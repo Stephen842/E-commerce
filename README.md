@@ -1,0 +1,2 @@
+
+I'm building an e-commerce website using Python (Django) for the backend and HTML, CSS, and TailwindCSS for the frontend. This store will include authentication features, a cart, checkout, andorder functionalities. It's a straightforward yet engaging project aimed at enhancing my Django and general coding skills. Upon completion, I plan to gift this website to a friend to help boost their business's online presence.
