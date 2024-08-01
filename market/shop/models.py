@@ -25,10 +25,10 @@ class Category(models.Model):
 #Having a method to register and retrieve customer by email and to check the existence of a customer
 
 class Customer(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
-    phone = models.CharField(max_length = 20)
-    password = models.CharField(max_length=30)
+    name = models.CharField(max_length=100, blank=False)
+    email = models.EmailField(blank=False)
+    phone = models.CharField(max_length = 20, blank=False)
+    password = models.CharField(max_length=30, blank=False)
 
     #to save the above data
     def register(self):
