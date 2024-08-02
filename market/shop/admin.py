@@ -10,7 +10,23 @@ class ProductsAdmin(admin.ModelAdmin):
         models.TextField: {'widget': TinyMCE()},
     }
 
+class CustomerAdmin(admin.ModelAdmin):
+    # Specify the fields to be displayed in the list view
+    list_display = ('email', 'name', 'phone', 'is_active', 'is_staff')
+    
+    # Add filters in the right sidebar
+    list_filter = ('is_active', 'is_staff')
+    
+    # Add a search bar at the top of the list view
+    search_fields = ('email', 'name', 'phone')
+    
+    # Add fields to be displayed in the detail view
+    fieldsets = (
+        (None, {'fields': ('email', 'name', 'phone', 'is_active', 'is_staff')}),
+        ('Permissions', {'fields': ('is_superuser',)}),
+    )
+
 admin.site.register(Category)
-admin.site.register(Customer)
+admin.site.register(Customer, CustomerAdmin)  # Register Customer with the custom admin
 admin.site.register(Products, ProductsAdmin)
 admin.site.register(Order)

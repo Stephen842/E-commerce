@@ -4,8 +4,10 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.template import loader
 from datetime import datetime
-from django.views import View 
-from django.contrib.auth.hashers import check_password, make_password 
+from django.views import View
+from django.contrib import messages
+from django.contrib.auth.hashers import check_password, make_password
+from django.contrib.auth import login, authenticate
 from .models import Category, Customer, Products, Order
 from .forms import CustomerForm, SigninForm
 from django.contrib.auth.decorators import login_required
@@ -74,44 +76,27 @@ def Store(request):
     print('You are: ', request.session.get('email'))
     return render(request, 'pages/home.html', context)
 
-#this is for the signin option, which uses field from the Customer found in the models.py
-class Signin(View):
-    return_url = None
-
-
-    # Handles GET requests by rendering the login template for users to enter their credentials.
-    #If users session is still on, user is redirected to the store page
-    # If a 'return_url' parameter is present in the request, it is saved for later redirection after successful login.
-    def get(self, request):
-        if request.session.get('customer'):
-            return redirect('store')
-        Signin.return_url = request.GET.get('return_url')
+def Signin(request):
+    if request.method == "GET":
+        if request.user.is_authenticated:
+            return redirect('homepage')
         form = SigninForm()
         return render(request, 'pages/signin.html', {'form': form})
-    
-    # Handles POST requests to authenticate users.
-    # Retrieves email and password from the request, validates credentials against the database,
-    # and sets the user session if authentication is successful.
-    # Redirects to 'return_url' if specified, otherwise redirects to the homepage.
-    # If authentication fails, renders the login page with an error message.
-    def post(self, request):
+
+    if request.method == 'POST':
         form = SigninForm(request.POST)
+
         if form.is_valid():
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            customer = Customer.get_customer_by_email(email)
-
-            if customer and check_password(password, customer.password):
-                request.session['customer'] = customer.id
-                if Signin.return_url:
-                    return HttpResponseRedirect(Signin.return_url)
-                else:
-                    return redirect('store')
+            email = request.POST['email']
+            password = request.POST['password']
+            user = authenticate(request, email=email, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('homepage')
             else:
-                error_message = 'Invalid email or password'
-                return render(request, 'pages/signin.html', {'form': form, 'error': error_message})
+                return HttpResponse('Invalid login')
+        return render(request, 'pages/signin.html')
 
-        return render(request, 'pages/signin.html', {'form': form})
 
 # Handles user logout by clearing the session data and redirecting to the store page.
 def logout(request):

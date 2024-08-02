@@ -54,6 +54,12 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'shop.BackendAuth.CustomAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+AUTH_USER_MODEL = 'shop.Customer'
+
 ROOT_URLCONF = 'market.urls'
 
 TEMPLATES = [
