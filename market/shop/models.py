@@ -53,7 +53,7 @@ class Customer(AbstractBaseUser, PermissionsMixin):  # Add PermissionsMixin here
 #This is for the category aspect of this project with a name field to be used in
 #categorizing product
 class Category(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, db_index=True)
 
     def __str__(self):
         return self.name
