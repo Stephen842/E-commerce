@@ -11,6 +11,7 @@ from django.contrib.auth import login, authenticate
 from .models import Category, Customer, Products, Order
 from .forms import CustomerForm, SigninForm
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 # Create your views here.
 
 def home(request):
@@ -118,19 +119,22 @@ class Signup(View):
         else:
             return render(request, 'pages/signup.html', {'form': form})
    
+@method_decorator(login_required, name='dispatch')
 class CheckOut(View):
     def post(self, request):
         address = request.POST.get('address')
         phone = request.POST.get('phone')
-        customer = request.session.get('customer')
+        customer_id = request.session.get('customer')
         cart = request.session.get('cart')
-        products = Products.get_products_by_id(list(cart.key()))
+        products = Products.get_products_by_id(list(cart.keys()))
         print(address, phone, customer, cart, products)
+
+        customer = Customer.objects.get(id=customer_id)
 
         for product in products:
             print(cart.get(str(product.id)))
             order = Order(
-                        customer=Customer(id=customer),
+                        customer = customer,
                         product = product,
                         price = product.price,
                         address = address,
@@ -142,10 +146,11 @@ class CheckOut(View):
 
         return redirect('cart')
 
+@method_decorator(login_required, name='dispatch')
 class OrderView(View):
     def get(self, request):
-        customer = request.session.get('customer')
-        orders = Order.get_orders_by_customer(customer)
+        customer_id = request.session.get('customer')
+        orders = Order.get_orders_by_customer(customer_id)
         print(orders)
         context = {
                 'orders': orders,

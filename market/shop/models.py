@@ -55,6 +55,9 @@ class Customer(AbstractBaseUser, PermissionsMixin):  # Add PermissionsMixin here
 class Category(models.Model):
     name = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name_plural = 'Categories'
 
@@ -62,23 +65,22 @@ class Category(models.Model):
     def get_all_categories():
         return Category.objects.all()
 
-    def __str__(self):
-        return self.name
-
 
 #this is for the product, which contain all neccessary details to be added to the product
 #it include a static method where one can retrieve a product by it ID, category Id and to retrieve all product
 
 class Products(models.Model):
     name = models.CharField(max_length=50)
-    price = models.IntegerField(default=0)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
+    price = models.CharField(max_length=20, default=0)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     description = models.TextField()
     image_0 = models.ImageField(upload_to='media/')
     image_1 = models.ImageField(upload_to='media/')
     image_2 = models.ImageField(upload_to='media/')
     image_3 = models.ImageField(upload_to='media/')
 
+    def __str__(self):
+        return self.name
     class Meta:
         verbose_name_plural = 'Products'
 
@@ -94,14 +96,12 @@ class Products(models.Model):
 
     #To retrieve product using category ID
     @staticmethod
-    def get_all_products_by_categoryid(category_id):
+    def get_all_products_by_categoryid(category_id=None):
         if category_id:
             return Products.objects.filter(category=category_id)
-        else:
-            return Products.get_all_Products()
-
+        return Products.get_all_products()
+    
 #This is for the order model, where users fill the neccessary products they are ordering for and then the orders are been submitted
-
 class Order(models.Model):
     products = models.ForeignKey(Products, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)

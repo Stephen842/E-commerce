@@ -4,15 +4,23 @@ from django.db import models
 from .models import Category, Customer, Products, Order
 
 # Register your models here.
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+    search_fields = ('name',)
+    pass
+
 
 class ProductsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'price', 'category')
+    search_fields = ('name', 'price', 'category')
+
     formfield_overrides = {
         models.TextField: {'widget': TinyMCE()},
     }
 
 class CustomerAdmin(admin.ModelAdmin):
     # Specify the fields to be displayed in the list view
-    list_display = ('email', 'name', 'phone', 'is_active', 'is_staff')
+    list_display = ('id','email', 'name', 'phone', 'is_active', 'is_staff')
     
     # Add filters in the right sidebar
     list_filter = ('is_active', 'is_staff')
@@ -26,7 +34,7 @@ class CustomerAdmin(admin.ModelAdmin):
         ('Permissions', {'fields': ('is_superuser',)}),
     )
 
-admin.site.register(Category)
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Customer, CustomerAdmin)  # Register Customer with the custom admin
 admin.site.register(Products, ProductsAdmin)
 admin.site.register(Order)
