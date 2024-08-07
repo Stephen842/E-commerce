@@ -28,6 +28,19 @@
     background-size: contain;
     background-position: center;
     height: 40vh;
-    position: relative;
-    
+    position: relative;    
+}
+
+.carousel {
+    scrollbar-width: none; /* Firefox */
+}
+
+.carousel::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+/* Additional fallback for older Edge and other browsers */
+.carousel {
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    overflow: -moz-scrollbars-none; /* Firefox (deprecated, but can help) */
 }

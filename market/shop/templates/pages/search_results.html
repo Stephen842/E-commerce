@@ -1,0 +1,19 @@
+<h1>Search Results for "{{ query }}"</h1>
+
+<h2>Products</h2>
+<ul>
+    {% for product in products %}
+        <li>{{ product.name }} - {{ product.category.name }} - ${{ product.price }}</li>
+    {% empty %}
+        <li>No products found.</li>
+    {% endfor %}
+</ul>
+
+<h2>Categories</h2>
+<ul>
+    {% for category in categories %}
+        <li>{{ category.name }}</li>
+    {% empty %}
+        <li>No categories found.</li>
+    {% endfor %}
+</ul>

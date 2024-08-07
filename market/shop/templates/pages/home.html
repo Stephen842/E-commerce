@@ -8,7 +8,7 @@
         <meta http-equiv='content-type' content='text/html; charset = utf-8'/>
         <meta name = 'description' content = 'RinxVenture is an ecommerce store where you can find genuine phones and gadgets from any brand. We also provide phone repair services.'>
         <meta name = 'robots' content = 'index, follow'>
-        <meta name = 'keywords' content = 'E-commerce'>
+        <meta name = 'keywords' content = 'E-commerce, Phones, Gadgets, devices, computer, repair'>
         <meta name = 'author' content = 'PythoGenius'>
         <meta name = 'author' content = 'Whatsapp me on +2348074625742'>
 
@@ -65,10 +65,45 @@
                 </div>
             </nav>
 
-            <div class='head-img w-[100%]'>
-
+            <div class='head-img w-[100%] flex justify-center items-center'>
+                <div class='w-full'>
+                    <form method='GET' action="{% url 'search' %}" class='w-full'>
+                        <div class='flex items-center justify-center'>
+                            <input type='text' name='q' placeholder='  Explore our products...' class='h-10  w-[35%] mb-4 border border-blue-500 focus:outline-none rounded-b-md text-[#333] mr-2'>
+                            <button type='submit' class='bg-blue-700 hover:bg-red-500 text-white cursor-pointer py-2 px-4 rounded mb-4'>Search</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </header>
+
+        <section>
+            <div class='flex'>
+                <div class='hidden md:block carousel shadow-xl w-[15%] '>
+                    <ul class='m-4'>
+                        <h2 class='text-xl mb-4 m-4 text-red-500'> Categories </h2>
+                        {% for category in data.categories %}
+                            <li class='mb-8 m-4 text-blue-700 hover:text-red-500'>
+                                <a href="?category={{ category.id }}"> {{ category.name }} </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class='w-[100%] md:w-[80%]'>
+                    <h2 class='text-3xl text-red-500 mt-8 mb-4 ml-8'> Trending Products </h2>
+                    <div class='w-full m-4 grid grid-cols-2 xl:grid-cols-4 gap-1 justify-evenly'>
+                        {% for product in data.products %}
+                        <div class='ml-4 m-8 mb-2 bg-white shadow-lg rounded-md flex-none'>
+                            <img src='{{ image_1.url }}' alt='image' class='w-full'>
+                            <div class = 'ml-2 mb-2'>
+                                <h2 class='text-sm'> {{ product.name }} </h2>
+                                <p class='text-sm'> ₦{{ product.price }} </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+        </section>
 
          <!-- This script below is for the navbar-->
          <script>

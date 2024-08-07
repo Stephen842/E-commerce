@@ -12,6 +12,7 @@ from .models import Category, Customer, Products, Order
 from .forms import CustomerForm, SigninForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.db.models import Q
 # Create your views here.
 
 def home(request):
@@ -61,13 +62,19 @@ def Store(request):
     categoryID = request.GET.get('category')
 
     if categoryID:
-        products = Products.get_all_products_by_categoryid(categoryID)
+        #This is to ensure that categoryID is a valid integer
+        try:
+            categoryId = int(categoryID)
+            products = Products.get_all_products_by_categoryid(categoryID)
+        except ValueError:
+            products = Products.get_all_products() #If the CategoryId is invalid, it should display all products
     else:
         products = Products.get_all_products()
 
-    data = {}
-    data['products'] = products
-    data['categories'] = categories
+    data = {
+        'products': products,
+        'categories': categories,
+    }
 
     context = {
         'title': 'Rinx Venture: Your One-Stop Store for Phones, Gadgets & Repairs',
@@ -157,3 +164,15 @@ class OrderView(View):
                 'title': ''
         }
         return render(request, 'pages/orders.html', context)
+    
+def search(request):
+    query = request.GET.get('q')
+    products = Products.objects.filter(Q(name__icontains=query) | Q(category__name__icontains=query))
+    categories = Category.objects.filter(name__icontains=query)
+    
+    context = {
+        'query': query,
+        'products': products,
+        'categories': categories,
+    }
+    return render(request, 'search_results.html', context)
