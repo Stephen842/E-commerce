@@ -18,7 +18,7 @@ def home(request):
     context = {
             'title': 'Rinx Venture: Your One-Stop Store for Phones, Gadgets & Repairs'
     }
-    return render(request, 'pages/home.html', context)
+    return render(request, 'pages/home2.html', context)
 
 class Index(View):
     
