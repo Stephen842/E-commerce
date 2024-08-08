@@ -12,7 +12,7 @@ urlpatterns = [
         path('login/', views.Signin, name='login'), 
         path('logout', views.logout, name='logout'),
         path('cart', Cart.as_view(), name='cart'), 
-        path('check-out', CheckOut.as_view(), name='checkout'), 
+        path('checkout', CheckOut.as_view(), name='checkout'), 
         path('orders', OrderView.as_view(), name='orders'),
         path('search/', views.search, name='search'),
         ]

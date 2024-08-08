@@ -150,18 +150,24 @@ class Cart(View):
 
 @method_decorator(login_required, name='dispatch')
 class CheckOut(View):
+    def get(self, request):
+        #If request is GET it should render the checkout form
+        return render(request, 'pages/checkout.html')
+
     def post(self, request):
+        #To process checkout form
         address = request.POST.get('address')
         phone = request.POST.get('phone')
         customer_id = request.session.get('customer')
         cart = request.session.get('cart')
-        products = Products.get_products_by_id(list(cart.keys()))
-        print(address, phone, customer, cart, products)
 
+        if not customer_id or not cart:
+            return redirect('homepage') #Redirect user to homepage if user is not logged in or there nothing is in the cart
+
+        products = Products.get_products_by_id(list(cart.keys()))
         customer = Customer.objects.get(id=customer_id)
 
         for product in products:
-            print(cart.get(str(product.id)))
             order = Order(
                         customer = customer,
                         product = product,

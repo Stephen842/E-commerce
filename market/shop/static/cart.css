@@ -1,10 +1,4 @@
 /* this lines below is for the header of each pages */
 
 .head-img{
-    background-image: url(cart.jpg);
-    background-repeat: repeat;
-    background-size: contain;
-    background-position: center;
-    height: 40vh;
-    position: relative;    
-}
+
