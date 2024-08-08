@@ -97,12 +97,18 @@ def Signin(request):
             email = request.POST['email']
             password = request.POST['password']
             user = authenticate(request, email=email, password=password)
+            
             if user is not None:
                 login(request, user)
+                try:
+                    customer = Customer.objects.get(email=user.email)
+                    request.session['customer'] = customer.id
+                except Customer.DoesNotExist:
+                    return HttpResponse('Customer does not exist for this user')
                 return redirect('homepage')
             else:
                 return HttpResponse('Invalid login')
-        return render(request, 'pages/signin.html')
+        return render(request, 'pages/signin.html', {'form': form})
 
 
 # Handles user logout by clearing the session data and redirecting to the store page.
@@ -170,8 +176,8 @@ class CheckOut(View):
         for product in products:
             order = Order(
                         customer = customer,
-                        product = product,
-                        price = product.price,
+                        products = product,
+                        price = int(product.price.replace(',', '')),
                         address = address,
                         phone = phone,
                         quantity = cart.get(str(product.id))

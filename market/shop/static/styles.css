@@ -44,6 +44,16 @@
     position: relative;    
 }
 
+/* for the order page*/
+.head-img4{
+    background-image: url(cart3.jpg);
+    background-repeat: repeat;
+    background-size: contain;
+    background-position: center;
+    height: 40vh;
+    position: relative;    
+}
+
 .carousel {
     scrollbar-width: none; /* Firefox */
 }

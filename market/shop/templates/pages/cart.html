@@ -48,7 +48,7 @@
                         </li>
 
                         <li>
-                            <a class='hover:text-red-500 text-xl' href = "#"><i class='bx bx-package' ></i> Order  </a>
+                            <a class='hover:text-red-500 text-xl' href = "{% url 'orders' %}"><i class='bx bx-package' ></i> Order  </a>
                         </li>
 
                         <li>
@@ -78,7 +78,7 @@
 
         <section>
             <div class='text-2xl mt-10 m-2'> Your Cart </div>
-            <div class='m-4 mt-10 flex items-center justify-center'>
+            <div class='m-1 xl:m-4 mt-10 flex items-center justify-center'>
                 {% if cart_items %}
                     <table class='w-[90%] justify-evenly border border-collapse border-[#ccc]'>
                         <thead>
