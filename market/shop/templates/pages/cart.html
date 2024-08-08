@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="{% static 'src/output.css' %}">
 
         <!-- CSS Link-->
-        <link rel="stylesheet" href="{% static 'styles.css' %}">
+        <link rel="stylesheet" href="{% static 'cart.css' %}">
 
         <script src="https://cdn.tailwindcss.com"></script>
 
@@ -48,7 +48,7 @@
                         </li>
 
                         <li>
-                            <a class='hover:text-red-500 text-xl' href = "#"><i class="bi bi-phone"></i> Phone Repair  </a>
+                            <a class='hover:text-red-500 text-xl' href = "#"><i class='bx bx-package' ></i> Order  </a>
                         </li>
 
                         <li>
@@ -64,7 +64,6 @@
                     <i onclick='onToggleMenu(this)' name='menu' class='bi bi-list text-2xl cursor-pointer md:hidden'></i>
                 </div>
             </nav>
-
             <div class='head-img w-[100%] flex justify-center items-center'>
                 <div class='w-full'>
                     <form method='GET' action="{% url 'search' %}" class='w-full'>
@@ -78,53 +77,61 @@
         </header>
 
         <section>
-            <div class='flex'>
-                <div class='hidden md:block carousel shadow-xl w-[15%] '>
-                    <ul class='m-4'>
-                        <h2 class='text-xl mb-4 m-4 text-red-500'> Categories </h2>
-                        {% for category in data.categories %}
-                            <li class='mb-8 m-4 text-blue-700 hover:text-red-500'>
-                                <a href="?category={{ category.id }}"> {{ category.name }} </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class='w-[100%] md:w-[80%]'>
-                    <h2 class='text-3xl text-red-500 mt-8 mb-4 ml-8'> Trending Products </h2>
-                    <div class='w-full m-2 md:m-4 grid grid-cols-2 xl:grid-cols-4 gap-1 justify-evenly'>
-                        {% for product in data.products %}
-                        <div class='ml-2 m-8 mb-2 bg-white shadow-lg rounded-md flex-none'>
-                            <img src='{{ product.image_0.url }}' alt='image' class='w-full'>
-                            <div class = 'w-[100%]'>
-                                <h2 class='text-sm ml-2'> {{ product.name }} </h2>
-                                <p class='text-sm ml-2'> ₦{{ product.price }} </p>                    
-                            
-                                <!-- This is for the cart System -->
-                                <div class='w-full bg-blue-500 hover:bg-blue-700 text-white h-8 flex justify-center items-center'>
-                                    <!-- This is for the add to cart form-->
-                                    <form method="post" action="{% url 'homepage' %}">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="product" value="{{ product.id }}">
-                                        <button type="submit" class=" font-bold py-2 px-4 text-"> + </button>
-                                    </form>
-
-                                    <h2 class='text-xs md:text-sm'> Add To Cart </h2>
-
-                                    <!-- Remove from Cart Form -->
-                                    <form method="post" action="{% url 'homepage' %}">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="product" value="{{ product.id }}">
-                                        <input type="hidden" name="remove" value="1">
-                                        <button type="submit" class="text-red-500 text-xl font-bold py-2 px-4"> - </button>
-                                    </form>
+            <div class='text-2xl mt-10 m-2'> Your Cart </div>
+            <div class='m-4 mt-10 flex items-center justify-center'>
+                {% if cart_items %}
+                    <table class='w-[90%] justify-evenly border border-collapse border-[#ccc]'>
+                        <thead>
+                        <tr class='text-red-500 border-b border-gray-300'>
+                            <th class='border-r border-gray-300 p-2 hidden xl:block'> Image </th>
+                            <th class='border-r border-gray-300 p-2'> Products </th>
+                            <th class='border-r border-gray-300 p-2'> Quantity </th>
+                            <th class='border-r border-gray-300 p-2'> Price </th>
+                        </tr>
+                        </thead>
+                        {% for item in cart_items %}
+                        <tbody>
+                        <tr class='text-red-500 border-b border-gray-300'>
+                            <td class='border-r border-gray-300 p-2 hidden xl:block'>
+                                <div class="flex justify-center items-center w-[50%] h-[20%]">
+                                    <img src='{{ item.product.image_0.url }}' alt='image' class='w-2/4 items-center'/>
                                 </div>
-                            </div>
-                        </div>
+                            </td>
+                            <td class='border-r border-gray-300 p-2'> {{ item.product.name }} </td>
+                            <td class='border-r border-gray-300 p-2'>
+                                <div class='flex items-center justify-evenly'>
+                                 <p>{{ item.quantity }}</p>
+                                 <form method="post" action="{% url 'homepage' %}" class="inline">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product" value="{{ item.product.id }}">
+                                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded text-2xl"> + </button>
+                                </form>
+                                 <form method="post" action="{% url 'homepage' %}" class="inline">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product" value="{{ item.product.id }}">
+                                    <input type="hidden" name="remove" value="1">
+                                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 ml-2 rounded text-2xl"> - </button>
+                                </form>
+                                </div>
+                            </td>
+                            <td class='border-r border-gray-300 p-2'> ₦{{ item.product.price }} </td>
+                        </tr>
+                        </tbody>
                         {% endfor %}
-                    </div>
-                </div>
+                    </table>
+                {% else %}
+                    <p>Your cart is empty.</p>
+                {% endif %}
+
+            </div>
+            {% if cart_items %}
+            <div class='flex justify-end m-8 md:mr-20'>
+                <button type = 'submit' class='bg-red-500 hover:bg-blue-700 text-white cursor-pointer py-2 px-4 rounded mb-4'><a href="{% url 'checkout' %}"> Proceed to CheckOut </a></button>
+            </div>
+            {%endif%}
         </section>
 
+        {% if cart_items %}
         <footer class='bg-blue-700 h-15'>
             <div class='w-full items-center'>
                 <p class='text-center text-white'>
@@ -135,15 +142,15 @@
                 </p>
             </div>
         </footer>
+        {% endif %}
 
-         <!-- This script below is for the navbar-->
-         <script>
+        <!-- This script below is for the navbar-->
+        <script>
             const navLinks = document.querySelector('.nav-links')
             function onToggleMenu(e){
                 e.name = e.name === 'menu' ? 'close' : 'menu'
                 navLinks.classList.toggle('top-[0%]')
             }
         </script>
-
     </body>
 </html>

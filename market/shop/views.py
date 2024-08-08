@@ -13,36 +13,33 @@ from .forms import CustomerForm, SigninForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Q
+from datetime import datetime
 # Create your views here.
 
 def home(request):
+    date = datetime.now()
     context = {
-            'title': 'Rinx Venture: Your One-Stop Store for Phones, Gadgets & Repairs'
+            'title': 'Rinx Venture: Your One-Stop Store for Phones, Gadgets & Repairs',
+            'date': date,
     }
     return render(request, 'pages/home2.html', context)
 
 class Index(View):
     
     def post(self, request):
-        product = request.POST.get('product')
+        product_id = request.POST.get('product')
         remove = request.POST.get('remove')
-        cart = request.POST.get('cart')
+        cart = request.session.get('cart', {})
 
-        if cart:
-            quantity = cart.get(product)
-            if quantity:
-                if remove:
-                    if quantity <= 1:
-                        cart.pop(product)
-                    else:
-                        cart[product] = quantity-1
+        if product_id:
+            quantity = cart.get(product_id, 0)
+            if remove:
+                if quantity <= 1:
+                    cart.pop(product_id, None)
                 else:
-                    cart[product] = quantity+1
+                    cart[product_id] = quantity - 1
             else:
-                cart[product] = 1
-        else:
-            cart = {}
-            cart[product] = 1
+                cart[product_id] = quantity + 1
 
         request.session['cart'] = cart
         print('cart', request.session['cart'])
@@ -52,6 +49,7 @@ class Index(View):
         return HttpResponseRedirect(f'/store{request.get_full_path()[1:]}')
 
 def Store(request):
+    date = datetime.now()
     cart = request.session.get('cart')
 
     if not cart:
@@ -79,6 +77,7 @@ def Store(request):
     context = {
         'title': 'Rinx Venture: Your One-Stop Store for Phones, Gadgets & Repairs',
         'data': data,
+        'date': date,
     }
 
     print('You are: ', request.session.get('email'))
@@ -125,7 +124,30 @@ class Signup(View):
             return redirect('store')
         else:
             return render(request, 'pages/signup.html', {'form': form})
-   
+
+@method_decorator(login_required, name='dispatch')
+class Cart(View):
+    def get(self, request):
+        date = datetime.now()
+        cart = request.session.get('cart', {})
+        product_ids = list(cart.keys())
+        products = Products.objects.filter(id__in=product_ids)
+
+        cart_items = []
+        for product in products:
+            cart_items.append({
+                'product': product,
+                'quantity': cart[str(product.id)]
+            })
+
+        context = {
+                'title': 'Your Cart',
+                'cart_items': cart_items,
+                'date': date,
+        }
+
+        return render(request, 'pages/cart.html', context)
+
 @method_decorator(login_required, name='dispatch')
 class CheckOut(View):
     def post(self, request):
@@ -153,19 +175,23 @@ class CheckOut(View):
 
         return redirect('cart')
 
+
 @method_decorator(login_required, name='dispatch')
 class OrderView(View):
     def get(self, request):
+        date = datetime.now()
         customer_id = request.session.get('customer')
         orders = Order.get_orders_by_customer(customer_id)
         print(orders)
         context = {
                 'orders': orders,
-                'title': ''
+                'title': '',
+                'date': date,
         }
         return render(request, 'pages/orders.html', context)
     
 def search(request):
+    date = datetime.now()
     query = request.GET.get('q')
     products = Products.objects.filter(Q(name__icontains=query) | Q(category__name__icontains=query))
     categories = Category.objects.filter(name__icontains=query)
@@ -174,5 +200,6 @@ def search(request):
         'query': query,
         'products': products,
         'categories': categories,
+        'date': date,
     }
     return render(request, 'search_results.html', context)
