@@ -62,6 +62,17 @@
                                 <a class='hover:text-red-500 text-xl' href="{% url 'login' %}"><i class="bi bi-box-arrow-in-right"></i> Sign In </a>
                             {% endif %}
                         </li>
+
+                        <li class='relative group z-20 md:hidden'>
+                            <a class='hover:text-red-500 text-xl' href = '#'><i class="bi bi-tags"></i> Category </a>
+                            <ul class="absolute left-0 hidden group-hover:block group-focus-within:block bg-inherit mt-2 shadow-lg rounded-lg w-40 z-20">
+                            {% for category in data.categories %}
+                                <li class='mb-4 m-2'>
+                                    <a href="?category={{ category.id }}" class='hover:text-red-500 text-xl'> {{ category.name }} </a>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <div class='text-blue-700 absolute right-10 z-20'>

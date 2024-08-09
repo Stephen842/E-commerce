@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Q
 from datetime import datetime
+from django.urls import reverse
 # Create your views here.
 
 def home(request):
@@ -43,7 +44,9 @@ class Index(View):
 
         request.session['cart'] = cart
         print('cart', request.session['cart'])
-        return redirect('homepage')
+
+        # I updated this below to render the same page with updated context instead of redirecting to the homepage
+        return self.get(request)
 
     def get(self, request):
         return HttpResponseRedirect(f'/store{request.get_full_path()[1:]}')
@@ -72,6 +75,7 @@ def Store(request):
     data = {
         'products': products,
         'categories': categories,
+        'cart': cart,
     }
 
     context = {
@@ -114,7 +118,7 @@ def Signin(request):
 # Handles user logout by clearing the session data and redirecting to the store page.
 def logout(request):
     request.session.clear()
-    return redirect('store')
+    return redirect('homepage')
 
 class Signup(View):
     def get(self, request):
@@ -127,7 +131,7 @@ class Signup(View):
             customer = form.save(commit=False)
             customer.password = make_password(customer.password)
             customer.save()
-            return redirect('store')
+            return redirect('homepage')
         else:
             return render(request, 'pages/signup.html', {'form': form})
 
@@ -185,7 +189,7 @@ class CheckOut(View):
             order.save()
         request.session['cart'] = {}
 
-        return redirect('cart')
+        return redirect('order-confirm')
 
 
 @method_decorator(login_required, name='dispatch')
@@ -201,6 +205,15 @@ class OrderView(View):
                 'date': date,
         }
         return render(request, 'pages/orders.html', context)
+
+@login_required
+def order_confirm(request):
+    shop_url = reverse('store')
+    context = {
+        'title': 'Order Placed Successfully',
+        'shop_url': shop_url
+    }
+    return render(request, 'pages/order_confirm.html', context)
     
 def search(request):
     date = datetime.now()
@@ -214,4 +227,4 @@ def search(request):
         'categories': categories,
         'date': date,
     }
-    return render(request, 'search_results.html', context)
+    return render(request, 'pages/search_results.html', context)
