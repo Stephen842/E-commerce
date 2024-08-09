@@ -81,6 +81,15 @@
             <a href="{% url 'store' %}" class="bg-blue-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">Continue Shopping</a>
         </div>
 
+        <!-- This script below is for the navbar-->
+        <script>
+            const navLinks = document.querySelector('.nav-links')
+            function onToggleMenu(e){
+                e.name = e.name === 'menu' ? 'close' : 'menu'
+                navLinks.classList.toggle('top-[0%]')
+            }
+        </script>
+
         <script>
             // Wait for 5 seconds and then redirect to the home page
             setTimeout(function() {
