@@ -145,9 +145,12 @@ class Cart(View):
 
         cart_items = []
         for product in products:
+            quantity = cart[str(product.id)]
+            total_price = int(product.price.replace(',', '')) * quantity
             cart_items.append({
                 'product': product,
-                'quantity': cart[str(product.id)]
+                'quantity': quantity,
+                'total_price': total_price, 
             })
 
         context = {
@@ -178,13 +181,16 @@ class CheckOut(View):
         customer = Customer.objects.get(id=customer_id)
 
         for product in products:
+            quantity = cart.get(str(product.id))
+            total_price = int(product.price.replace(',', '')) * quantity
+
             order = Order(
                         customer = customer,
                         products = product,
-                        price = int(product.price.replace(',', '')),
+                        price = total_price,
                         address = address,
                         phone = phone,
-                        quantity = cart.get(str(product.id))
+                        quantity = quantity
                     )
             order.save()
         request.session['cart'] = {}

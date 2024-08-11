@@ -85,8 +85,9 @@
                         <tr class='text-red-500 border-b border-gray-300'>
                             <th class='border-r border-gray-300 p-2 hidden xl:block'> Image </th>
                             <th class='border-r border-gray-300 p-2'> Products </th>
-                            <th class='border-r border-gray-300 p-2'> Quantity </th>
                             <th class='border-r border-gray-300 p-2'> Price </th>
+                            <th class='border-r border-gray-300 p-2'> Quantity </th>
+                            <th class='border-r border-gray-300 p-2'> Total </th>
                         </tr>
                         </thead>
                         {% for item in cart_items %}
@@ -98,6 +99,7 @@
                                 </div>
                             </td>
                             <td class='border-r border-gray-300 p-2'> {{ item.product.name }} </td>
+                            <td class='border-r border-gray-300 p-2'> ₦{{ item.product.price }} </td>
                             <td class='border-r border-gray-300 p-2'>
                                 <div class='flex items-center justify-evenly'>
                                  <p>{{ item.quantity }}</p>
@@ -114,7 +116,7 @@
                                 </form>
                                 </div>
                             </td>
-                            <td class='border-r border-gray-300 p-2'> ₦{{ item.product.price }} &nbsp; <span class='text-sm'> Per quantity </span></td>
+                            <td> {{ item.total_price }}</td>
                         </tr>
                         </tbody>
                         {% endfor %}
