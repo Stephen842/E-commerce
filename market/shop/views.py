@@ -87,6 +87,13 @@ def Store(request):
     print('You are: ', request.session.get('email'))
     return render(request, 'pages/home.html', context)
 
+def Product_details(request, id):
+    all_product = Products.objects.get(id=id)
+    context = {
+        'all_product': all_product,
+    }
+    return render(request, 'pages/product-details.html', context)
+
 def Signin(request):
     if request.method == "GET":
         if request.user.is_authenticated:

@@ -100,8 +100,8 @@
                     <div class='ml-2 m-8 mb-2 bg-white shadow-lg rounded-md flex-none'>
                         <img src='{{ product.image_0.url }}' alt='image' class='w-full'>
                         <div class = 'w-[100%]'>
-                            <h2 class='text-sm ml-2'> {{ product.name }} </h2>
-                            <p class='text-sm ml-2'> ₦{{ product.price }} </p>                    
+                            <h2 class='text-sm ml-2'><a href="{% url 'product-details' product.id %}"> {{ product.name }} </a></h2>
+                            <p class='text-sm ml-2'><a href="{% url 'product-details' product.id %}"> ₦{{ product.price }} </a></p>                    
                     
                             <!-- This is for the cart System -->
                             <div class='w-full bg-blue-500 hover:bg-blue-700 text-white h-8 flex justify-center items-center'>

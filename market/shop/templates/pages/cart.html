@@ -98,7 +98,7 @@
                                     <img src='{{ item.product.image_0.url }}' alt='image' class='w-2/4 items-center'/>
                                 </div>
                             </td>
-                            <td class='border-r border-gray-300 p-2'> {{ item.product.name }} </td>
+                            <td class='border-r border-gray-300 p-2'><a href="{% url 'product-details' item.product.id %}"> {{ item.product.name }} </a></td>
                             <td class='border-r border-gray-300 p-2'> ₦{{ item.product.price }} </td>
                             <td class='border-r border-gray-300 p-2'>
                                 <div class='flex items-center justify-evenly'>
@@ -116,7 +116,7 @@
                                 </form>
                                 </div>
                             </td>
-                            <td> {{ item.total_price }}</td>
+                            <td class='border-r border-gray-300 p-2'> ₦{{ item.total_price }}</td>
                         </tr>
                         </tbody>
                         {% endfor %}

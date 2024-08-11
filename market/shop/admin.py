@@ -45,8 +45,17 @@ class CustomerAdmin(admin.ModelAdmin):
         ('Permissions', {'fields': ('is_superuser',)}),
     )
 
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'products')
+    search_fields = ('id',)  # Only include fields directly on the Order model
+
+    def get_search_results(self, request, queryset, search_term):
+        queryset, use_distinct = super().get_search_results(request, queryset, search_term)
+        # Filter based on the related model's fields
+        queryset |= self.model.objects.filter(Q(products__name__icontains=search_term))
+        return queryset, use_distinct
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Customer, CustomerAdmin)  # Register Customer with the custom admin
 admin.site.register(Products, ProductsAdmin)
-admin.site.register(Order)
+admin.site.register(Order, OrderAdmin)
