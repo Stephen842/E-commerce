@@ -30,7 +30,7 @@ class ProductsAdmin(admin.ModelAdmin):
         return queryset, use_distinct
     
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('author', 'created_on')
+    list_display = ('author', 'created_on', 'post')
     #search_fields = ('body')
     pass
 

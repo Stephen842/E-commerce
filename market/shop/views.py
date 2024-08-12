@@ -97,8 +97,9 @@ def Product_details(request, id):
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
+            customer = Customer.objects.get(name=request.user.name)  # Get the Customer instance
             comment = Comment(
-                        author = request.user.customer, #Automatically set the author to the logged in user
+                        author = customer,  # Assign the Customer instance
                         body = form.cleaned_data['body'],
                         post = all_product,
                     )
