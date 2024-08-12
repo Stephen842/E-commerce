@@ -2,7 +2,7 @@ from django.contrib import admin
 from tinymce.widgets import TinyMCE
 from django.db import models
 from django.db.models import Q
-from .models import Category, Customer, Products, Order
+from .models import Category, Customer, Products, Comment, Order
 
 # Register your models here.
 class CategoryAdmin(admin.ModelAdmin):
@@ -28,6 +28,12 @@ class ProductsAdmin(admin.ModelAdmin):
         except ValueError:
             queryset |= self.model.objects.filter(Q(category__name__icontains=search_term))
         return queryset, use_distinct
+    
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('author', 'created_on')
+    #search_fields = ('body')
+    pass
+
 
 class CustomerAdmin(admin.ModelAdmin):
     # Specify the fields to be displayed in the list view
@@ -58,4 +64,5 @@ class OrderAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Customer, CustomerAdmin)  # Register Customer with the custom admin
 admin.site.register(Products, ProductsAdmin)
+admin.site.register(Comment, CommentAdmin)
 admin.site.register(Order, OrderAdmin)

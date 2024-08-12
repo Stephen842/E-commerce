@@ -109,7 +109,7 @@
                     <div class='w-full m-2 md:m-4 grid grid-cols-2 xl:grid-cols-4 gap-1 justify-evenly'>
                         {% for product in data.products %}
                         <div class='ml-2 m-8 mb-2 bg-white shadow-lg rounded-md flex-none'>
-                            <img src='{{ product.image_0.url }}' alt='image' class='w-full'>
+                            <a href="{% url 'product-details' product.id %}"><img src='{{ product.image_0.url }}' alt='image' class='w-full'></a>
                             <div class = 'w-[100%]'>
                                 <h2 class='text-sm ml-2 mb-1'><a href="{% url 'product-details' product.id %}"> {{ product.name }} </a></h2>
                                 <p class='text-sm ml-2'><a href="{% url 'product-details' product.id %}"> ₦{{ product.price }} </a></p>        

@@ -8,8 +8,8 @@ from django.views import View
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import login, authenticate
-from .models import Category, Customer, Products, Order
-from .forms import CustomerForm, SigninForm
+from .models import Category, Customer, Products, Comment, Order
+from .forms import CustomerForm, SigninForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Q
@@ -87,10 +87,30 @@ def Store(request):
     print('You are: ', request.session.get('email'))
     return render(request, 'pages/home.html', context)
 
+@login_required
 def Product_details(request, id):
     all_product = Products.objects.get(id=id)
+    date = datetime.now()
+
+    #This below is for the comment section of each product
+    form = CommentForm()
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = Comment(
+                        author = request.user.customer, #Automatically set the author to the logged in user
+                        body = form.cleaned_data['body'],
+                        post = all_product,
+                    )
+            comment.save()
+            return redirect(request.path_info)
+
+    comments = Comment.objects.filter(post=all_product)
+
     context = {
         'all_product': all_product,
+        'comments': comments,
+        'date': date,
     }
     return render(request, 'pages/product-details.html', context)
 

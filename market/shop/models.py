@@ -101,6 +101,18 @@ class Products(models.Model):
             return Products.objects.filter(category=category_id)
         return Products.get_all_products()
     
+class Comment(models.Model):
+    author = models.ForeignKey(Customer, on_delete = models.CASCADE)
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add = True)
+    post = models.ForeignKey(Products, on_delete = models.CASCADE, related_name='comments')
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return f"{self.author} on '{self.post}'"
+
 #This is for the order model, where users fill the neccessary products they are ordering for and then the orders are been submitted
 class Order(models.Model):
     products = models.ForeignKey(Products, on_delete=models.CASCADE)

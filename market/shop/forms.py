@@ -1,5 +1,5 @@
 from django import forms
-from .models import Customer, Products, Order
+from .models import Customer, Products, Comment, Order
 
  #this below works for the administrative uploading of properties       
 class CustomerForm(forms.ModelForm):
@@ -54,3 +54,7 @@ class OrderForm(forms.ModelForm):
             'password': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter PAssword'}),
         }
 
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('body',)
