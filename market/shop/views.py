@@ -92,6 +92,9 @@ def Product_details(request, id):
     all_product = Products.objects.get(id=id)
     date = datetime.now()
 
+     # Logic for related products: Get other products from the same category
+    related_products = Products.objects.filter(category=all_product.category).exclude(id=all_product.id)
+
     #This below is for the comment section of each product
     form = CommentForm()
     if request.method == 'POST':
@@ -110,6 +113,7 @@ def Product_details(request, id):
 
     context = {
         'all_product': all_product,
+        'related_products': related_products,
         'comments': comments,
         'date': date,
     }

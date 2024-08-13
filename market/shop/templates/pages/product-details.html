@@ -81,13 +81,17 @@
             </nav>
         </header>
 
+        <!-- This is for the whatsapp call to action button -->
+        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+        <div class="elfsight-app-54c7cf36-5f68-4b49-8e08-05dad510663b" data-elfsight-app-lazy></div>
+
         <section>
             <div class='block xl:flex justify-evenly'>
                 <div class='w-full xl:w-2/4 m-2'>
                     <div class='relative overflow-hidden w-full h-[90vh] mt-2'>
                         <div id='carousel' class='flex transition-transform duration-500 ease-in-out h-[100%] ml-4'>
                             <div class='carousel-item w-full h-[90%]'>
-                                <img src="{{ all_product.image_0.url }}" alt='slide1' class='w-full h-full object-cover'>
+                                <img src="{{ all_product.image_0.url }}" alt='slide0' class='w-full h-full object-cover'>
                             </div>
                         </div>
                         <!-- Previous Button -->
@@ -104,13 +108,13 @@
                         <div class='relative'>
                             <div class='flex justify-evenly'>
                                 <div class='p-2'>
-                                    <img src="{{ all_product.image_1.url }}" alt='slide1' class='w-full h-full object-cover rounded-sm'>
+                                    <img src="{{ all_product.image_1.url }}" alt='slide1' class='h-full object-cover rounded-sm'>
                                 </div>
                                 <div class='p-2'>
-                                    <img src="{{ all_product.image_2.url }}" alt='slide1' class='w-full h-full object-cover rounded-sm'>
+                                    <img src="{{ all_product.image_2.url }}" alt='slide2' class='h-full object-cover rounded-sm'>
                                 </div>
                                 <div class='p-2'>
-                                    <img src="{{ all_product.image_3.url }}" alt='slide1' class='w-full h-full object-cover rounded-sm'>
+                                    <img src="{{ all_product.image_3.url }}" alt='slide3' class='h-full object-cover rounded-sm'>
                                 </div>
                             </div>
                         </div>
@@ -120,28 +124,28 @@
                 <div class='w-full xl:w-2/4 m-4 ml-1 xl:ml-2 xl:mt-8'>
                     <h2 class='text-red-500 text-3xl'> {{ all_product.name }} </h2>
                     <p class='whitespace-pre-line'>
-                        {{ all_product.description | safe | slice:'1000'}}
+                        {{ all_product.description | safe  | slice:'950'}}
                     </p>
                     <form method="post" action="" class='w-[95%] bg-blue-700 hover:bg-red-500 mt-4 ml-1 text-center'>
                         {% csrf_token %}
                         <input type="hidden" name="all_product" value="{{ all_product.product.id }}"/>
-                        <button type="submit" class=" font-bold py-2 px-4 text-white"> Add To Cart </button>
+                        <button type="submit" class=" font-bold py-2 px-4 text-white"><i class="bi bi-cart4"></i> &nbsp; Add To Cart </button>
                     </form>
                 </div>
             </div>
 
             <div class='m-4 text-[#334]'>
                 <div>
-                    <h3 class='text-xl mb-4'> Your Reviews Matters </h3>
+                    <h2 class='text-xl mb-4'> Your Reviews Matters </h2>
                     <form method="POST" action="{% url 'product-details' all_product.id %}">
                         {% csrf_token %}
                         <div class='h-[40%]'>
-                            <textarea rows='10' name='body' id='body' class='mt-1 p-2 h-[40%] border border-gray-300 rounded-md w-full xl:w-[50%] focus:outline-none'></textarea>
+                            <textarea rows='10' name='body' id='body' class='mt-1 p-2 h-[40%] border border-gray-300 rounded-md w-full focus:outline-none'></textarea>
                         </div>
                         <button type='submit' class='bg-blue-700 hover:bg-red-500 text-white cursor-pointer py-2 px-4 rounded mt-4 mb-4'> Submit </button>
                     </form>
                 </div>
-                <div class='mt-8 w-full xl:w-[50%]'>
+                <div class='mt-8 w-full'>
                     {% for comment in comments %}
                     <div class='p-4 bg-gray-200 rounded-lg mb-4'>
                         <!--<p> On {{ comment.created_on }} <b>{{ comment.author }}</b> wrote: </p>-->
@@ -156,8 +160,39 @@
                 </div>
             </div>
 
-            <div>
+            <div class='m-4 text-[#334]'>
+                <h2 class='text-xl mb-4'> Related Products </h2>
+                <div class='w-full m-2 md:m-4 grid grid-cols-2 xl:grid-cols-4 gap-1 justify-evenly'>
+                    {% for product in related_products %}
+                    <div class='ml-2 m-8 mb-2 bg-white shadow-lg rounded-md flex-none'>
+                        <a href="{% url 'product-details' product.id %}"><img src='{{ product.image_0.url }}' alt='image' class='w-full'></a>
+                        <div class = 'w-[100%]'>
+                            <h2 class='text-sm ml-2 mb-1'><a href="{% url 'product-details' product.id %}"> {{ product.name }} </a></h2>
+                            <p class='text-sm ml-2'><a href="{% url 'product-details' product.id %}"> ₦{{ product.price }} </a></p>        
+                        
+                            <!-- This is for the cart System -->
+                            <div class='w-full bg-blue-500 hover:bg-blue-700 text-white h-8 flex justify-center items-center'>
+                                <!-- This is for the add to cart form-->
+                                <form method="post" action="{% url 'homepage' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product" value="{{ product.id }}">
+                                    <button type="submit" class=" font-bold py-2 px-4 text-"> + </button>
+                                </form>
 
+                                <h2 class='text-xs md:text-sm'> Add To Cart </h2>
+
+                                <!-- Remove from Cart Form -->
+                                <form method="post" action="{% url 'homepage' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product" value="{{ product.id }}">
+                                    <input type="hidden" name="remove" value="1">
+                                    <button type="submit" class="text-red-500 text-xl font-bold py-2 px-4"> - </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </section>
 
@@ -167,7 +202,7 @@
                     &copy; RinxVenture.com  {{ date|date:'Y' }} - All Rights Reserved. 
                 </p>
                 <p class='text-center'>
-                    <a href="https://github.com/Stephen842" class='text-red-700'>By PythoGenius </a>
+                    <a href="https://github.com/Stephen842" class='text-red-600'>By PythoGenius </a>
                 </p>
             </div>
         </footer>
