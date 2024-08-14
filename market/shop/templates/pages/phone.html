@@ -1,0 +1,244 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+        <meta name = 'viewport' content = 'width=device-width, initial-scale = 1'/>
+        <meta http-equiv='content-type' content='text/html; charset = utf-8'/>
+        <meta name = 'description' content = 'RinxVenture is an ecommerce store where you can find genuine phones and gadgets from any brand. We also provide phone repair services.'>
+        <meta name = 'robots' content = 'index, follow'>
+        <meta name = 'keywords' content = 'E-commerce, Phones, Gadgets, devices, computer, repair'>
+        <meta name = 'author' content = 'PythoGenius'>
+        <meta name = 'author' content = 'Whatsapp me on +2348074625742'>
+
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+        <link rel = 'stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+        <link rel = 'stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css'>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+        <!-- TailwindCSS Compilation -->
+        <link rel="stylesheet" href="{% static 'src/npx tailwindcss -i ./static/src/input.css -o ./static/src/output.cssoutput.css' %}">
+        <link rel="stylesheet" href="{% static 'src/output.css' %}">
+
+        <!-- CSS Link-->
+        <link rel="stylesheet" href="{% static 'repair.css' %}">
+
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        
+        <title> {{ title }} </title>
+    </head>
+
+    <body class='bg-slate-100 font-poppins'>
+        <header>
+            <div class=' hidden lg:flex m-6 ml-[40%] justify-evenly'>
+                <div class='flex'>
+                    <h2> <i class="bi bi-telephone text-5xl text-blue-700"></i> </h2>
+                    <h2 class='ml-2 font-bold'>
+                         Call Us <br/> <span class='font-normal text-[#333]'> +234 816 217 4520 </span>
+                    </h2>
+                </div>
+                <div class='flex'>
+                    <h2><i class="bi bi-alarm text-5xl text-blue-700"></i></h2>
+                    <h2 class='ml-2 font-bold'>
+                        Opening Hours <br/> <span class='font-normal text-[#333]'> Mon-Sat: 08:00 – 18:00 Sun: CLOSED </span>
+                    </h2>
+                </div>
+            </div>
+            <hr class='w-[90%] mx-auto m-4 hidden xl:block'/>
+            <div class='nav'>
+                <nav class="flex justify-between items-center w-[100%] mx-auto bg-slate-100">
+                    <div class="m-4 ml-8 w-2/4 md:ml-4">
+                        <a href='/'><img src="{% static 'rinxlogo1.png' %}" alt="RinxVenture Logo" class='w-2/4 h-auto'></a>
+                    </div>
+
+                    <div class="nav-links duration-500 w-full pl-4 bg-white bg-opacity-80 md:bg-transparent absolute md:static min-h-[60vh] md:min-h-fit left-0 top-[-100%] z-20">
+                        <ul class="flex md:flex-row flex-col md:justify-evenly md:gap-[1vw] gap-4 mt-4 md:mt-0 font-magnolia text-blue-700">
+                            <li>
+                                <a class='hover:text-red-500 text-xl' href = "{% url 'phone-repair' %}"><i class="bi bi-house"></i> Home </a>
+                            </li>
+                        
+                            <li>
+                                <a class='hover:text-red-500 text-xl' href = "{% url 'store' %}"><i class="bi bi-cart4"></i> Store </a>
+                            </li>
+
+                            <li>
+                                <a class='hover:text-red-500 text-xl' href = "#"><i class="bi bi-truck"></i> Services </a>
+                            </li>
+
+                            <li>
+                                <a class='hover:text-red-500 text-xl' href = "#"><i class="bi bi-person-lines-fill"></i> Contact  </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class='text-blue-700 absolute right-10 z-20'>
+                        <i onclick='onToggleMenu(this)' name='menu' class='bi bi-list text-2xl cursor-pointer md:hidden'></i>
+                    </div>
+                </nav>
+                <div class='m-4 mt-[16%] text-center items-center'>
+                    <div>
+                        <h2 class='text-5xl font-times text-red-500 font-bold'> Your Phone Repair Expert! </h2>
+                    </div>
+                    <div>
+                        <h2 class='whitespace-pre-line text-2xl font-times text-gray-900 font-bold'> 
+                            Fast & Efficient Repairs
+                            for all devices
+                        </h2>
+                        <p class='whitespace-pre-line text-xl mb-4'>
+                            Quick, reliable repairs for smartphones, tablets, and laptops. 
+                            Expert technicians, quality service, and fast turnaround.
+                        </p>
+                    </div>
+                    <div>
+                        <button class='bg-blue-700 hover:bg-red-500 text-white cursor-pointer py-2 px-4 rounded'> Learn More </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class='w-[90%] md:w-[60%] block md:flex justify-evenly lg:ml-4'>
+                <div class='w-[100%] md:w-[50%] ml-2 m-8 mb-2 bg-white shadow-lg rounded-md flex-none'>
+                    <img src="{% static 'repair.jpg' %}" alt='image' class='w-full rounded transition-transform duration-300 transform hover:scale-90'/>
+                    <div class = 'w-[100%] flex m-2 mt-4'>
+                        <h2><i class="bi bi-phone text-5xl text-blue-700"></i></h2>
+                        <h2 class='ml-2 font-bold'>
+                            Phone Repair <br/> <span class='font-normal text-[#333]'> Quick and reliable repairs for all phone issues. Expert technicians, fast service, and quality fixes. </span>
+                        </h2>
+                    </div>
+                </div>
+                <div class='w-[100%] md:w-[50%] ml-2 m-8 mb-2 bg-white shadow-lg rounded-md flex-none'>
+                    <img src="{% static 'repair3.jpg' %}" alt='image' class='w-full rounded transition-transform duration-300 transform hover:scale-90'/>
+                    <div class = 'w-[100%] flex m-2 mt-4'>
+                        <h2><i class="bi bi-tablet-landscape text-5xl text-blue-700"></i></h2>
+                        <h2 class='ml-2 font-bold'>
+                            Tablet Repair <br/> <span class='font-normal text-[#333]'> Fast and dependable repairs for all tablet models. Skilled technicians, efficient service, and top-notch repairs. </span>
+                        </h2>
+                    </div>
+                </div>
+                <div class='w-[100%] md:w-[50%] ml-2 m-8 mb-2 bg-white shadow-lg rounded-md flex-none'>
+                    <img src="{% static 'repair4.jpg' %}" alt='image' class='w-full rounded transition-transform duration-300 transform hover:scale-90'/>
+                    <div class = 'w-[100%] flex  m-2 mt-4'>
+                        <h2><i class="bi bi-laptop text-5xl text-blue-700"></i></h2>
+                        <h2 class='ml-2 font-bold'>
+                            Laptop Repair <br/> <span class='font-normal text-[#333]'> Expert repairs for all laptop issues. Quick turnaround, reliable service, and high-quality fixes. </span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </header>
+
+        <section>
+            <div>
+                <div class='text-center mt-[5%]'>
+                    <h2 class='text-lg text-blue-700 font-bold mb-2'> About Us </h2>
+                    <h2 class='text-2xl mb-2 font-bold'> Welcome to Rinx Venture Repair Service </h2>
+                    <hr class='mb-2 w-[5%] md:w-[3%]  mx-auto m-4 border-4 rounded border-blue-700 font-extrabold'/>
+                    <p class='mb-2 m-2'>
+                        At Rinx Venture, we specialize in quick and reliable repairs for all types of devices. 
+                        Whether it’s a smartphone, tablet, or laptop, our expert technicians are ready to get your device back in top shape.
+                        Trust us for fast service, quality repairs, and a hassle-free experience every time.
+                    </p>
+                </div>
+                <div class='block md:flex justify-evenly m-4 mt-[5%]'>
+                    <div class='flex mb-4'>
+                        <h2><i class="bi bi-people text-5xl text-blue-700"></i></h2>
+                        <h2 class='ml-2 font-bold'>
+                            Expertly Trained Team <br/> <span class='font-normal text-[#333] whitespace-pre-line'> 
+                                Our team is highly skilled and trained
+                                to handle all your needs with 
+                                precision and expertise. </span>
+                        </h2>
+                    </div>
+                    <div class='flex mb-4'>
+                        <h2><i class="bi bi-clock text-5xl text-blue-700"></i></h2>
+                        <h2 class='ml-2 font-bold'>
+                            Fast Repair Service <br/> <span class='font-normal text-[#333] whitespace-pre-line'>
+                                Quick and efficient repairs to 
+                                get you back on track in no time. </span>
+                        </h2>
+                    </div>
+                    <div class='flex mb-4'>
+                        <h2><i class="bi bi-cash-coin text-5xl text-blue-700"></i></h2>
+                        <h2 class='ml-2 font-bold'>
+                            Affordable Prices <br/> <span class='font-normal text-[#333] whitespace-pre-line'>
+                                Quality repairs at prices
+                                that won’t break the bank. </span>
+                        </h2>
+                    </div>
+                </div>
+                <div class='flex justify-evenly items center mb-4 mt-[5%]'>
+                    <div>
+                        <img src="{% static 'phone1.jpg' %}" alt='phone repair image' class='rounded-sm'/>
+                    </div>
+                    <div>
+                        <img src="{% static 'phone2.jpg' %}" alt='phone repair image' class='rounded-sm'/>
+                    </div>
+                </div>
+            </div>
+
+            <div class='mt-[5%] bg-[#35b6f9] h-[30%] block lg:flex justify-between'>
+                <div class='m-8 ml-4 md:ml-16 text-center md:text-left'>
+                    <h2 class='font-extrabold text-white text-lg'> SHOP</h2>
+                    <h2 class='whitespace-pre-line mb-8 text-5xl text-white font-extrabold'>
+                        We also sell a wide range of
+                        Mobiles, Tablets & Tech
+                        Products
+                    </h2>
+                    <hr class='mb-8 w-[30%] md:w-[30%] mx-auto md:mx-0 border-4 rounded border-white font-extrabold'/>
+                    <a href = "{% url 'store' %}"><button class='bg-white hover:bg-red-500 text-blue-700 hover:text-white py-2 px-4 rounded-xl'> View Shop </button></a>
+                </div>
+                <div class='relative'>
+                    <img src="{% static 'shop.jpg' %}" alt='combo image' class='rounded-sm'/>
+                </div>
+            </div>
+            <div class='text-center mt-[5%]'>
+                <h2 class='text-lg text-blue-700 font-bold mb-2'> Our Services </h2>
+                <h2 class='text-2xl mb-2 font-bold'> Quality Service is Our Guarantee </h2>
+                <hr class='mb-2 w-[5%] md:w-[3%]  mx-auto m-4 border-4 rounded border-blue-700 font-extrabold'/>
+                <p class='mb-2 m-2'>
+                    At Rinx Venture, we provide comprehensive solutions for all your tech needs. Our services include:
+                </p>
+            </div>
+            <div class='w-[90%] md:w-[60%] block md:flex justify-evenly lg:ml-4'>
+                <div class='w-[100%] md:w-[50%] ml-2 m-8 mb-2 bg-white shadow-lg rounded-md flex-none'>
+                    <img src="{% static 'repair5.jpg' %}" alt='image' class='w-full rounded transition-transform duration-300 transform hover:scale-90'/>
+                    <div class = 'w-[100%] m-2 mt-4'>
+                        <h2 class='ml-2 font-bold'>
+                            Device Repairs
+                        </h2>
+                        <div class='mb-8 md:w-[15%] hidden md:block md:ml-2 md:mt-2 border-4 rounded border-blue-700 font-extrabold'></div>
+                    </div>
+                </div>
+                <div class='w-[100%] md:w-[50%] ml-2 m-8 mb-2 bg-white shadow-lg rounded-md flex-none'>
+                    <img src="{% static 'shop1.jpg' %}" alt='image' class='w-full rounded transition-transform duration-300 transform hover:scale-90'/>
+                    <div class = 'w-[100%] m-2 mt-4'>
+                        <h2 class='ml-2 font-bold'>
+                            Device Sales
+                        </h2>
+                        <div class='mb-8 md:w-[15%] hidden md:block md:ml-2 md:mt-2 border-4 rounded border-blue-700 font-extrabold'></div>
+                    </div>
+                </div>
+                <div class='w-[100%] md:w-[50%] ml-2 m-8 mb-2 bg-white shadow-lg rounded-md flex-none'>
+                    <img src="{% static 'expert.jpg' %}" alt='image' class='w-full rounded transition-transform duration-300 transform hover:scale-90'/>
+                    <div class = 'w-[100%]  m-2 mt-4'>
+                        <h2 class='ml-2 font-bold'>
+                            Expert Technicians 
+                        </h2>
+                        <div class='mb-8 md:w-[15%] hidden md:block md:ml-2 md:mt-2 border-4 rounded border-blue-700 font-extrabold'></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- This script below is for the navbar-->
+        <script>
+            const navLinks = document.querySelector('.nav-links')
+            function onToggleMenu(e){
+                e.name = e.name === 'menu' ? 'close' : 'menu'
+                navLinks.classList.toggle('top-[0%]')
+            }
+        </script>
+    </body>
+</html>

@@ -17,13 +17,13 @@ from datetime import datetime
 from django.urls import reverse
 # Create your views here.
 
-def home(request):
+def Phone_repair(request):
     date = datetime.now()
     context = {
             'title': 'Rinx Venture: Your One-Stop Store for Phones, Gadgets & Repairs',
             'date': date,
     }
-    return render(request, 'pages/home2.html', context)
+    return render(request, 'pages/phone.html', context)
 
 class Index(View):
     

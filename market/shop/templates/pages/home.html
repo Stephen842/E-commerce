@@ -52,7 +52,7 @@
                         </li>
 
                         <li>
-                            <a class='hover:text-red-500 text-xl' href = "#"><i class="bi bi-phone"></i> Phone Repair  </a>
+                            <a class='hover:text-red-500 text-xl' href = "{% url 'phone-repair' %}"><i class="bi bi-phone"></i> Phone Repair  </a>
                         </li>
 
                         <li>
@@ -156,8 +156,8 @@
             </div>
         </footer>
 
-         <!-- This script below is for the navbar-->
-         <script>
+        <!-- This script below is for the navbar-->
+        <script>
             const navLinks = document.querySelector('.nav-links')
             function onToggleMenu(e){
                 e.name = e.name === 'menu' ? 'close' : 'menu'
