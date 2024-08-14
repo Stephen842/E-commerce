@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="nav-links duration-500 w-full pl-4 bg-white bg-opacity-80 md:bg-transparent absolute md:static min-h-[60vh] md:min-h-fit left-0 top-[-100%] z-20">
-                    <ul class="flex md:flex-row flex-col md:justify-evenly md:gap-[1vw] gap-4 mt-4 md:mt-0 font-magnolia text-blue-700">
+                    <ul class="flex md:flex-row flex-col md:justify-evenly md:gap-[1vw] gap-4 mt-4 md:mt-0 font-magnolia text-[#35b6f9]">
                         <li>
                             <a class='hover:text-red-500 text-xl' href = '/'><i class="bi bi-house"></i> Home </a>
                         </li>
@@ -75,7 +75,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class='text-blue-700 absolute right-10 z-20'>
+                <div class='text-[#35b6f9] absolute right-10 z-20'>
                     <i onclick='onToggleMenu(this)' name='menu' class='bi bi-list text-2xl cursor-pointer md:hidden'></i>
                 </div>
             </nav>
@@ -126,7 +126,7 @@
                     <p class='whitespace-pre-line'>
                         {{ all_product.description | safe  | slice:'950'}}
                     </p>
-                    <form method="post" action="" class='w-[95%] bg-blue-700 hover:bg-red-500 mt-4 ml-1 text-center'>
+                    <form method="post" action="" class='w-[95%] bg-[#35b6f9] hover:bg-red-500 mt-4 ml-1 text-center'>
                         {% csrf_token %}
                         <input type="hidden" name="all_product" value="{{ all_product.product.id }}"/>
                         <button type="submit" class=" font-bold py-2 px-4 text-white"><i class="bi bi-cart4"></i> &nbsp; Add To Cart </button>
@@ -142,7 +142,7 @@
                         <div class='h-[40%]'>
                             <textarea rows='10' name='body' id='body' class='mt-1 p-2 h-[40%] border border-gray-300 rounded-md w-full focus:outline-none'></textarea>
                         </div>
-                        <button type='submit' class='bg-blue-700 hover:bg-red-500 text-white cursor-pointer py-2 px-4 rounded mt-4 mb-4'> Submit </button>
+                        <button type='submit' class='bg-[#35b6f9] hover:bg-red-500 text-white cursor-pointer py-2 px-4 rounded mt-4 mb-4'> Submit </button>
                     </form>
                 </div>
                 <div class='mt-8 w-full'>
@@ -171,7 +171,7 @@
                             <p class='text-sm ml-2'><a href="{% url 'product-details' product.id %}"> ₦{{ product.price }} </a></p>        
                         
                             <!-- This is for the cart System -->
-                            <div class='w-full bg-blue-500 hover:bg-blue-700 text-white h-8 flex justify-center items-center'>
+                            <div class='w-full bg-[#35b6f9] hover:bg-blue-500 text-white h-8 flex justify-center items-center'>
                                 <!-- This is for the add to cart form-->
                                 <form method="post" action="{% url 'homepage' %}">
                                     {% csrf_token %}

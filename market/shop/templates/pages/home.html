@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="nav-links duration-500 w-full pl-4 bg-white bg-opacity-80 md:bg-transparent absolute md:static min-h-[60vh] md:min-h-fit left-0 top-[-100%] z-20">
-                    <ul class="flex md:flex-row flex-col md:justify-evenly md:gap-[1vw] gap-4 mt-4 md:mt-0 font-magnolia text-blue-700">
+                    <ul class="flex md:flex-row flex-col md:justify-evenly md:gap-[1vw] gap-4 mt-4 md:mt-0 font-magnolia text-[#35b6f9]">
                         <li>
                             <a class='hover:text-red-500 text-xl' href = '/'><i class="bi bi-house"></i> Home </a>
                         </li>
@@ -75,7 +75,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class='text-blue-700 absolute right-10 z-20'>
+                <div class='text-[#35b6f9] absolute right-10 z-20'>
                     <i onclick='onToggleMenu(this)' name='menu' class='bi bi-list text-2xl cursor-pointer md:hidden'></i>
                 </div>
             </nav>
@@ -84,8 +84,8 @@
                 <div class='w-full'>
                     <form method='GET' action="{% url 'search' %}" class='w-full'>
                         <div class='flex items-center justify-center'>
-                            <input type='text' name='q' placeholder='  Explore our products...' class='h-10  w-[35%] mb-4 border border-blue-500 focus:outline-none rounded-b-md text-[#333] mr-2'>
-                            <button type='submit' class='bg-blue-700 hover:bg-red-500 text-white cursor-pointer py-2 px-4 rounded mb-4'>Search</button>
+                            <input type='text' name='q' placeholder='  Explore our products...' class='h-10  w-[35%] mb-4 border border-[#35b6f9] focus:outline-none rounded-b-md text-[#333] mr-2'>
+                            <button type='submit' class='bg-[#35b6f9] hover:bg-red-500 text-white cursor-pointer py-2 px-4 rounded mb-4'>Search</button>
                         </div>
                     </form>
                 </div>
@@ -102,7 +102,7 @@
                     <ul class='m-4'>
                         <h2 class='text-xl mb-4 m-4 text-red-500'> Categories </h2>
                         {% for category in data.categories %}
-                            <li class='mb-8 m-4 text-blue-700 hover:text-red-500'>
+                            <li class='mb-8 m-4 text-[#35b6f9] hover:text-red-500'>
                                 <a href="?category={{ category.id }}"> {{ category.name }} </a>
                             </li>
                         {% endfor %}
@@ -119,7 +119,7 @@
                                 <p class='text-sm ml-2'><a href="{% url 'product-details' product.id %}"> ₦{{ product.price }} </a></p>        
                             
                                 <!-- This is for the cart System -->
-                                <div class='w-full bg-blue-500 hover:bg-blue-700 text-white h-8 flex justify-center items-center'>
+                                <div class='w-full bg-[#35b6f9] hover:bg-blue-500 text-white h-8 flex justify-center items-center'>
                                     <!-- This is for the add to cart form-->
                                     <form method="post" action="{% url 'homepage' %}">
                                         {% csrf_token %}

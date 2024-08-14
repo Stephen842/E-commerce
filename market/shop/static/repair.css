@@ -6,3 +6,30 @@
     height: 100vh;
     position: relative;    
 }
+.testimony{
+    background-image: url(star.jpg);
+    background-repeat: repeat;
+    background-size: contain;
+    background-position: center;
+    height: 40vh;
+    position: relative;  
+}
+
+.carousel {
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .carousel::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
+
+  /* Additional fallback for older Edge and other browsers */
+  .carousel {
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    overflow: -moz-scrollbars-none; /* Firefox (deprecated, but can help) */
+  }
+
+  footer{
+    background-color: #35b6f9;
+    height: 90vh;
+  }
