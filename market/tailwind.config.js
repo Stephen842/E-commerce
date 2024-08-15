@@ -7,6 +7,8 @@ module.exports = {
     extend: {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
+        tangerine: ['Tangerine', 'serif'],
+        times: ['Times New Roman', 'serif'],
       },
     },
   },
