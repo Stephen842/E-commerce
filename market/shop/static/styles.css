@@ -67,3 +67,8 @@
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     overflow: -moz-scrollbars-none; /* Firefox (deprecated, but can help) */
 }
+
+footer{
+    background-color: #35b6f9;
+    background-size: cover;
+  }

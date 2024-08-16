@@ -69,7 +69,7 @@
                             </li>
 
                             <li>
-                                <a class='hover:text-red-500 text-xl' href = "#"><i class="bi bi-person-lines-fill"></i> Contact  </a>
+                                <a class='hover:text-red-500 text-xl' href="{% url 'contacts' %}"><i class="bi bi-person-lines-fill"></i> Contact  </a>
                             </li>
                         </ul>
                     </div>
@@ -235,7 +235,7 @@
                 </div>
             </div>
 
-            <div class='testimony mt-8 block lg:flex justify-between mb-12'>
+            <div class='testimony mt-8 block lg:flex justify-between mb-[30%] md:mb-24'>
                 <div class='m-8 ml-4 md:ml-16'>
                     <h2 class='text-[#35b6f9]'> Testimonials </h2>
                     <h2 class='whitespace-pre-line mb-8 text-5xl text-[#35b6f9] font-extrabold'>
@@ -246,7 +246,7 @@
                 </div>
                 <div class='mt-12 w-[100%] lg:w-[80%] mb-8'>
                     <div class='carousel flex overflow-x-auto text-red-500 m-2 mb-8 '>
-                        <div class='w-[50%] h-[70%] md:w-[30%]  md:h-[40%] bg-white bg-opacity-20 shadow-lg mb-4 ml-2 rounded-md flex-none'>
+                        <div class='w-[50%] h-[70%] md:w-[60%]  md:h-[40%] bg-white bg-opacity-20 shadow-lg mb-4 ml-2 rounded-md flex-none'>
                             <div class = 'justify-center items-center h-full'>
                                 <p class='p-2 text-center'> 
                                     "Rinx Venture is my go-to for all my gadget repairs. They’ve fixed my phone, laptop, and tablet over the years, and the service is always top-notch. Their customer care is excellent, and I always leave satisfied."
@@ -301,7 +301,7 @@
                     
                     <!-- About Us Column -->
                     <div>
-                        <h2 class="text-3xl mb-8">About Us</h2>
+                        <h2 class="text-3xl mb-8">Contact Us</h2>
                         <ul class="text-xl font-bold space-y-4">
                             <li><i class="bi bi-geo-alt"></i> Old Banex plaza Bsg 33A Opposite Greatfaith communication</li>
                             <li><i class="bi bi-telephone-inbound"></i> +234 816 217 4520</li>
@@ -316,7 +316,7 @@
                         <ul class="text-xl font-bold space-y-4">
                             <li><a href="{% url 'store' %}"><i class="bi bi-arrow-right"></i> Store</a></li>
                             <li><a href="{% url 'phone-repair' %}"><i class="bi bi-arrow-right"></i> Device Repair</a></li>
-                            <li><a href="#"><i class="bi bi-arrow-right"></i> Contact</a></li>
+                            <li><a href="{% url 'contacts' %}"><i class="bi bi-arrow-right"></i> Contact</a></li>
                         </ul>
                     </div>
         
@@ -334,6 +334,10 @@
                         </ul>
                     </div>
         
+                </div>
+                <div class='mt-[15%] flex justify-between'>
+                    <h2 class='text-sm'> Copyright © RinxVenture. All Rights Reserved. </h2>
+                    <h2 class='text-sm'><a href="https://github.com/Stephen842" class='text-red-500 font-bold'> PythoGenius </a></h2>
                 </div>
             </div>
         </footer>

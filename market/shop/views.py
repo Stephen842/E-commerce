@@ -25,6 +25,14 @@ def Phone_repair(request):
     }
     return render(request, 'pages/phone.html', context)
 
+def Contact(request):
+    date = datetime.now()
+    context = {
+        'title': 'Reach Out to RinxVenture',
+        'date': date,
+    }
+    return render(request, 'pages/contact.html', context)
+
 class Index(View):
     
     def post(self, request):
