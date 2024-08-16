@@ -2,7 +2,7 @@ from django.contrib import admin
 from tinymce.widgets import TinyMCE
 from django.db import models
 from django.db.models import Q
-from .models import Category, Customer, Products, Comment, Order
+from .models import Category, Customer, Products, Comment, Order, Contact
 
 # Register your models here.
 class CategoryAdmin(admin.ModelAdmin):
@@ -66,3 +66,4 @@ admin.site.register(Customer, CustomerAdmin)  # Register Customer with the custo
 admin.site.register(Products, ProductsAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(Order, OrderAdmin)
+admin.site.register(Contact)

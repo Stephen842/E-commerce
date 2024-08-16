@@ -131,3 +131,12 @@ class Order(models.Model):
     @staticmethod
     def get_orders_by_customer(customer_id):
         return Order.objects.filter(customer=customer_id).order_by('-date')
+    
+class Contact(models.Model):
+    name = models.CharField(max_length = 250, blank=False)
+    phone = models.IntegerField(blank=False)
+    email = models.EmailField(blank=False)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.email

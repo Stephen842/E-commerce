@@ -1,37 +1,75 @@
 
 
+/* This is for the phone repair page*/
 .nav{
-    background-image: url(repair2.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    position: relative;    
+  background-image: url(repair2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;    
 }
+
+/* This is for the contact page*/
+.nav1{
+  background-image: url(contact.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;    
+}
+
+/* This is for the success page*/
+.nav2{
+  background-image: url(message.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;    
+}
+
 .testimony{
-    background-image: url(star.jpg);
-    background-repeat: repeat;
-    background-size: contain;
-    background-position: center;
-    height: 40vh;
-    position: relative;  
+  background-image: url(star.jpg);
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: center;
+  height: 40vh;
+  position: relative;  
 }
 
 .carousel {
-    scrollbar-width: none; /* Firefox */
-  }
+  scrollbar-width: none; /* Firefox */
+}
 
-  .carousel::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Edge */
-  }
+.carousel::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
 
-  /* Additional fallback for older Edge and other browsers */
-  .carousel {
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    overflow: -moz-scrollbars-none; /* Firefox (deprecated, but can help) */
-  }
+/* Additional fallback for older Edge and other browsers */
+.carousel {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  overflow: -moz-scrollbars-none; /* Firefox (deprecated, but can help) */
+}
 
-  footer{
-    background-color: #35b6f9;
-    background-size: cover;
-  }
+/* This is for the contact page form*/
+.form-control{
+  width: 100%;
+  color: #333;
+  background: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #ff7474;
+  border-bottom-right-radius: 1px;
+  border-color: #ff7474;
+}
+.form-control::placeholder {
+  color: #ff7474;
+  font-family: 'Magnolia Script', sans-serif;
+}
+
+footer{
+  background-color: #35b6f9;
+  background-size: cover;
+}

@@ -8,8 +8,8 @@ from django.views import View
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import login, authenticate
-from .models import Category, Customer, Products, Comment, Order
-from .forms import CustomerForm, SigninForm, CommentForm
+from .models import Category, Customer, Products, Comment, Order, Contact
+from .forms import CustomerForm, SigninForm, CommentForm, ContactForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Q
@@ -27,9 +27,19 @@ def Phone_repair(request):
 
 def Contact(request):
     date = datetime.now()
+
+    #this part is for the contact form containing details of user who are trying to reach out to us 
+    if request.method  == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'pages/success.html')
+    form = ContactForm()
+
     context = {
         'title': 'Reach Out to RinxVenture',
         'date': date,
+        'form': form,
     }
     return render(request, 'pages/contact.html', context)
 
@@ -274,3 +284,12 @@ def search(request):
         'date': date,
     }
     return render(request, 'pages/search_results.html', context)
+
+def Success(request):
+    repair_url = reverse('phone-repair')
+
+    context = {
+        'title': 'Message Sent Successfully',
+        'repair_url': repair_url,
+    }
+    return render(request, 'pages/success.html', context)
