@@ -74,6 +74,12 @@ class Products(models.Model):
     price = models.CharField(max_length=20, default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     description = models.TextField()
+    condition = models.CharField(max_length=20, blank=True)
+    os = models.CharField(max_length=20, blank=True)
+    storage = models.CharField(max_length=20, blank=True)
+    color = models.CharField(max_length=20, blank=True)
+    features = models.CharField(max_length=100, blank=True)
+    battery = models.CharField(max_length=100, blank=True)
     image_0 = models.ImageField(upload_to='media/')
     image_1 = models.ImageField(upload_to='media/')
     image_2 = models.ImageField(upload_to='media/')
@@ -100,7 +106,7 @@ class Products(models.Model):
         if category_id:
             return Products.objects.filter(category=category_id)
         return Products.get_all_products()
-    
+
 class Comment(models.Model):
     author = models.ForeignKey(Customer, on_delete = models.CASCADE)
     body = models.TextField()
@@ -131,7 +137,7 @@ class Order(models.Model):
     @staticmethod
     def get_orders_by_customer(customer_id):
         return Order.objects.filter(customer=customer_id).order_by('-date')
-    
+
 class Contact(models.Model):
     name = models.CharField(max_length = 250, blank=False)
     phone = models.IntegerField(blank=False)

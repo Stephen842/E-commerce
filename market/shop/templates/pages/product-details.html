@@ -16,7 +16,7 @@
         <link rel = 'stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
         <link rel = 'stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css'>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-        
+
         <!-- TailwindCSS Compilation -->
         <link rel="stylesheet" href="{% static 'src/npx tailwindcss -i ./static/src/input.css -o ./static/src/output.cssoutput.css' %}">
         <link rel="stylesheet" href="{% static 'src/output.css' %}">
@@ -26,7 +26,7 @@
 
         <script src="https://cdn.tailwindcss.com"></script>
 
-        
+
         <title> {{ all_product.name }} </title>
     </head>
 
@@ -42,7 +42,7 @@
                         <li>
                             <a class='hover:text-red-500 text-xl' href = '/'><i class="bi bi-house"></i> Home </a>
                         </li>
-                        
+
                         <li>
                             <a class='hover:text-red-500 text-xl' href = "{% url 'cart' %}"><i class="bi bi-cart4"></i> Cart </a>
                         </li>
@@ -65,13 +65,13 @@
 
                         <li class='relative group z-20 md:hidden'>
                             <a class='hover:text-red-500 text-xl' href = '#'><i class="bi bi-tags"></i> Category </a>
-                            <ul class="absolute left-0 hidden group-hover:block group-focus-within:block bg-inherit mt-2 shadow-lg rounded-lg w-40 z-20">
+                            <!-- <ul class="absolute left-0 hidden group-hover:block group-focus-within:block bg-inherit mt-2 shadow-lg rounded-lg w-40 z-20">
                             {% for category in data.categories %}
                                 <li class='mb-4 m-2'>
                                     <a href="?category={{ category.id }}" class='hover:text-red-500 text-xl'> {{ category.name }} </a>
                                 </li>
                             {% endfor %}
-                            </ul>
+                            </ul> -->
                         </li>
                     </ul>
                 </div>
@@ -86,54 +86,93 @@
         <div class="elfsight-app-54c7cf36-5f68-4b49-8e08-05dad510663b" data-elfsight-app-lazy></div>
 
         <section>
-            <div class='block xl:flex justify-evenly'>
-                <div class='w-full xl:w-2/4 m-2'>
-                    <div class='relative overflow-hidden w-full h-[90vh] mt-2'>
-                        <div id='carousel' class='flex transition-transform duration-500 ease-in-out h-[100%] ml-4'>
-                            <div class='carousel-item w-full h-[90%]'>
-                                <img src="{{ all_product.image_0.url }}" alt='slide0' class='w-full h-full object-cover'>
-                            </div>
+            <div class='block lg:flex justify-evenly w-[98%]'>
+                <div class='relative overflow-hidden w-full lg:w-[55] mt-2 mr-2'>
+                    <div id='carousel' class='flex transition-transform duration-500 ease-in-out h-[100%] ml-4'>
+                        <div class='carousel-item w-full h-[90%]'>
+                            <img src="{{ all_product.image_0.url }}" alt='slide0' class='w-full h-full object-cover rounded-md'>
                         </div>
-                        <!-- Previous Button -->
-                        <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded ml-8">
-                            &lt;
-                        </button>
-
-                        <!-- Next Button -->
-                        <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded mr-4">
-                            &gt;
-                        </button>
                     </div>
-                    <div class='w-full'>
-                        <div class='relative'>
-                            <div class='flex justify-evenly'>
-                                <div class='p-2'>
-                                    <img src="{{ all_product.image_1.url }}" alt='slide1' class='h-full object-cover rounded-sm'>
-                                </div>
-                                <div class='p-2'>
-                                    <img src="{{ all_product.image_2.url }}" alt='slide2' class='h-full object-cover rounded-sm'>
-                                </div>
-                                <div class='p-2'>
-                                    <img src="{{ all_product.image_3.url }}" alt='slide3' class='h-full object-cover rounded-sm'>
-                                </div>
+                    <!-- Previous Button -->
+                    <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded ml-8">
+                        &lt;
+                    </button>
+
+                    <!-- Next Button -->
+                    <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded mr-4">
+                        &gt;
+                    </button>
+                </div>
+                <div class='w-full lg:w-[45]'>
+                    <div class='relative'>
+                        <div class='flex justify-evenly lg:h-[90%] lg:grid lg:grid-cols-2 lg:gap-1'>
+                            <div class='p-2'>
+                                <img src="{{ all_product.image_1.url }}" alt='slide1' class='h-full object-cover rounded-lg'>
+                            </div>
+                            <div class='p-2'>
+                                <img src="{{ all_product.image_2.url }}" alt='slide2' class='h-full object-cover rounded-lg'>
+                            </div>
+                            <div class='p-2'>
+                                <img src="{{ all_product.image_3.url }}" alt='slide3' class='h-full lg:h-[80%] object-cover rounded-lg'>
                             </div>
                         </div>
-                    </div>    
+                    </div>
                 </div>
+            </div>
 
-                <div class='w-full xl:w-2/4 m-4 ml-1 xl:ml-2 xl:mt-8'>
-                    <h2 class='text-red-500 text-3xl'> {{ all_product.name }} </h2>
-                    <p class='whitespace-pre-line'>
-                        {{ all_product.description | safe  | slice:'950'}}
-                    </p>
-                    {% for product in related_products %}
+            <div>
+                <table class='w-full lg:w-[70%] m-4 border'>
+                    <tbody>
+                        <tr class='mt-4'>
+                            <td class='font-semibold text-sm text-[#35b6f9] w-1/2 py-0'> Brand </td>
+                            <td class='font-semibold text-sm text-[#35b6f9] w-1/2 py-0'> Model </td>
+                        </tr>
+                        <tr>
+                            <td class='w-1/2 py-3'> {{all_product.category}} </td>
+                            <td class='w-1/2 py-3'> {{all_product.name}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class='font-semibold text-sm text-[#35b6f9] w-1/2 py-0'> Condition </td>
+                            <td class='font-semibold text-sm text-[#35b6f9] w-1/2 py-0'> Operating System </td>
+                        </tr>
+                        <tr>
+                            <td class='w-1/2 py-3'> {{all_product.condition}} </td>
+                            <td class='w-1/2 py-3'> {{all_product.os}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class='font-semibold text-sm text-[#35b6f9] w-1/2 py-0'> Storage </td>
+                            <td class='font-semibold text-sm text-[#35b6f9] w-1/2 py-0'> Price </td>
+                        </tr>
+                        <tr>
+                            <td class='w-1/2 py-3'> {{all_product.storage}} </td>
+                            <td class='w-1/2 py-3'> {{all_product.price}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class='font-semibold text-sm text-[#35b6f9] w-1/2 py-0'> Color </td>
+                            <td class='font-semibold text-sm text-[#35b6f9] w-1/2 py-0'> Battery </td>
+                        </tr>
+                        <tr>
+                            <td class='w-1/2 py-1'> {{all_product.color}} </td>
+                            <td class='w-1/2 py-1'> {{all_product.battery}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class='ml-4 mr-4'>
+                <p class='whitespace-pre-line'>
+                    {{ all_product.description | safe }}
+                </p>
+                {% for product in related_products %}
                     <form method="post" action="{% url 'homepage' %}" class='w-[95%] bg-[#35b6f9] hover:bg-red-500 mt-4 ml-1 text-center'>
                         {% csrf_token %}
                         <input type="hidden" name="all_product" value="{{ all_product.product.id }}"/>
                         <button type="submit" class=" font-bold py-2 px-4 text-white"><i class="bi bi-cart4"></i> &nbsp; Add To Cart </button>
                     </form>
-                    {% endfor %}
-                </div>
+                {% endfor %}
             </div>
 
             <div class='m-4 text-[#334]'>
@@ -154,7 +193,7 @@
                         <p>
                             <i class="bi bi-person-circle text-6xl"></i><sub>{{ comment.author }}</sub>
                         </p>
-                        <p class='whitespace-pre-line'> 
+                        <p class='whitespace-pre-line'>
                             {{ comment.body | linebreaks }}
                         </p>
                     </div>
@@ -167,11 +206,11 @@
                 <div class='w-full m-2 md:m-4 grid grid-cols-2 xl:grid-cols-4 gap-1 justify-evenly'>
                     {% for product in related_products %}
                     <div class='ml-2 m-8 mb-2 bg-white shadow-lg rounded-md flex-none'>
-                        <a href="{% url 'product-details' product.id %}"><img src='{{ product.image_0.url }}' alt='image' class='w-full'></a>
+                        <a href="{% url 'product-details' product.id %}"><img src='{{ product.image_0.url }}' alt='image' class='w-full rounded-t-xl'></a>
                         <div class = 'w-[100%]'>
-                            <h2 class='text-sm ml-2 mb-1'><a href="{% url 'product-details' product.id %}"> {{ product.name }} </a></h2>
-                            <p class='text-sm ml-2'><a href="{% url 'product-details' product.id %}"> ₦{{ product.price }} </a></p>        
-                        
+                            <h2 class='font-semibold text-sm ml-1 mb-1'><a href="{% url 'product-details' product.id %}"> {{ product.name }} </a></h2>
+                            <p class='text-red-500 text-sm ml-1 mb-1'><a href="{% url 'product-details' product.id %}"> ₦{{ product.price }} </a></p>
+
                             <!-- This is for the cart System -->
                             <div class='w-full bg-[#35b6f9] hover:bg-blue-500 text-white h-8 flex justify-center items-center'>
                                 <!-- This is for the add to cart form-->
@@ -201,7 +240,7 @@
         <footer class="relative w-full text-white py-8">
             <div class="container mx-auto px-4">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    
+
                     <!-- About Us Column -->
                     <div>
                         <h2 class="text-3xl mb-8">Contact Us</h2>
@@ -212,7 +251,7 @@
                             <li><i class="bi bi-envelope-plus"></i> RinxVenture@gmail.com</li>
                         </ul>
                     </div>
-        
+
                     <!-- Links Column -->
                     <div>
                         <h2 class="text-3xl mb-8">Links</h2>
@@ -224,7 +263,7 @@
                             <li><a href="{% url 'contacts' %}"><i class="bi bi-arrow-right"></i> Contact</a></li>
                         </ul>
                     </div>
-        
+
                     <!-- Opening Hours Column -->
                     <div>
                         <h2 class="text-3xl mb-8">Opening Hours</h2>
@@ -238,7 +277,7 @@
                             <li><i class="bi bi-clock"></i>&nbsp;Sunday <span class="ml-4">CLOSED</span></li>
                         </ul>
                     </div>
-        
+
                 </div>
                 <div class='mt-[15%] flex justify-between'>
                     <h2 class='text-sm'> Copyright © RinxVenture. All Rights Reserved. </h2>
