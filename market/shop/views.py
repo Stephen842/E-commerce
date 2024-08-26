@@ -15,6 +15,7 @@ from django.utils.decorators import method_decorator
 from django.db.models import Q
 from datetime import datetime
 from django.urls import reverse
+from django.shortcuts import get_object_or_404
 # Create your views here.
 
 def Phone_repair(request):
@@ -293,3 +294,10 @@ def Success(request):
         'repair_url': repair_url,
     }
     return render(request, 'pages/success.html', context)
+
+def error_404(request):
+    context ={
+            'title': 'Oops! Page Not Found'
+    }
+    return render(request, 'pages/404.html', context)
+

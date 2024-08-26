@@ -18,12 +18,17 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import handler404
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', include('shop.urls')),
 ]
+
+#This is a flag for handling 404(Page not found) errors
+#handler404 = 'shop.views.error_404'
 
 # Serve media files during development
 if settings.DEBUG:

@@ -20,4 +20,5 @@ urlpatterns = [
         path('order-confirm/', views.order_confirm, name='order-confirm'),
         path('search/', views.search, name='search'),
         path('success/', views.Success, name='success'),
+        path('404/', views.error_404, name='404')
         ]

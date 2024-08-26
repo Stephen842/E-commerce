@@ -10,7 +10,7 @@ class CustomerForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Name'}),
             'phone': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter Phone Number'}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter Email'}),
-            'password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter Password'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password: minimum 8 characters.'}),
         }
 
     def clean_name(self):
