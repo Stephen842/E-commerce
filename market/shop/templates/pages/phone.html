@@ -27,9 +27,23 @@
 
         <script src="https://cdn.tailwindcss.com"></script>
 
-        
+
         <title> {{ title }} </title>
     </head>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/66d5e45950c10f7a00a323d0/1i6po80k7';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 
     <body class='bg-slate-100 font-poppins'>
         <header>
@@ -54,12 +68,12 @@
                         <a href='/'><img src="{% static 'rinxlogo1.png' %}" alt="RinxVenture Logo" class='w-2/4 h-auto'></a>
                     </div>
 
-                    <div class="nav-links duration-500 w-full pl-4 bg-white bg-opacity-80 md:bg-transparent absolute md:static min-h-[60vh] md:min-h-fit left-0 top-[-100%] z-20">
+                    <div class="nav-links duration-500 w-full pl-4 bg-[#FFF5EE] md:bg-transparent absolute md:static min-h-[100vh] md:min-h-fit left-0 top-[-100%] z-20">
                         <ul class="flex md:flex-row flex-col md:justify-evenly md:gap-[1vw] gap-4 mt-4 md:mt-0 font-magnolia text-[#35b6f9]">
                             <li>
                                 <a class='hover:text-red-500 text-xl' href = "{% url 'phone-repair' %}"><i class="bi bi-house"></i> Home </a>
                             </li>
-                        
+
                             <li>
                                 <a class='hover:text-red-500 text-xl' href = "{% url 'store' %}"><i class="bi bi-cart4"></i> Store </a>
                             </li>
@@ -82,12 +96,12 @@
                         <h2 class='text-5xl font-times text-red-500 font-bold'> Your Device Repair Expert! </h2>
                     </div>
                     <div>
-                        <h2 class='whitespace-pre-line text-2xl font-times text-gray-900 font-bold'> 
+                        <h2 class='whitespace-pre-line text-2xl font-times text-gray-900 font-bold'>
                             Fast & Efficient Repairs
                             for all devices
                         </h2>
                         <p class='whitespace-pre-line text-xl mb-4'>
-                            Quick, reliable repairs for smartphones, tablets, and laptops. 
+                            Quick, reliable repairs for smartphones, tablets, and laptops.
                             Expert technicians, quality service, and fast turnaround.
                         </p>
                     </div>
@@ -136,7 +150,7 @@
                     <h2 class='text-2xl mb-2 font-bold'> Welcome to Rinx Venture Repair Service </h2>
                     <hr class='mb-2 w-[5%] md:w-[3%]  mx-auto m-4 border-4 rounded border-[#35b6f9] font-extrabold'/>
                     <p class='mb-2 m-2'>
-                        At Rinx Venture, we specialize in quick and reliable repairs for all types of devices. 
+                        At Rinx Venture, we specialize in quick and reliable repairs for all types of devices.
                         Whether it’s a smartphone, tablet, or laptop, our expert technicians are ready to get your device back in top shape.
                         Trust us for fast service, quality repairs, and a hassle-free experience every time.
                     </p>
@@ -146,9 +160,9 @@
                     <div class='flex mb-4'>
                         <h2><i class="bi bi-people text-5xl text-[#35b6f9]"></i></h2>
                         <h2 class='ml-2 font-bold'>
-                            Expertly Trained Team <br/> <span class='font-normal text-[#333] whitespace-pre-line'> 
+                            Expertly Trained Team <br/> <span class='font-normal text-[#333] whitespace-pre-line'>
                                 Our team is highly skilled and trained
-                                to handle all your needs with 
+                                to handle all your needs with
                                 precision and expertise. </span>
                         </h2>
                     </div>
@@ -156,7 +170,7 @@
                         <h2><i class="bi bi-clock text-5xl text-[#35b6f9]"></i></h2>
                         <h2 class='ml-2 font-bold'>
                             Fast Repair Service <br/> <span class='font-normal text-[#333] whitespace-pre-line'>
-                                Quick and efficient repairs to 
+                                Quick and efficient repairs to
                                 get you back on track in no time. </span>
                         </h2>
                     </div>
@@ -228,7 +242,7 @@
                     <img src="{% static 'expert.jpg' %}" alt='image' class='w-full rounded transition-transform duration-300 transform hover:scale-90'/>
                     <div class = 'w-[100%]  m-2 mt-4'>
                         <h2 class='ml-2 font-bold'>
-                            Expert Technicians 
+                            Expert Technicians
                         </h2>
                         <div class='mb-8 md:w-[15%] hidden md:block md:ml-2 md:mt-2 border-4 rounded border-[#35b6f9] font-extrabold'></div>
                     </div>
@@ -239,7 +253,7 @@
                 <div class='m-8 ml-4 md:ml-16'>
                     <h2 class='text-[#35b6f9]'> Testimonials </h2>
                     <h2 class='whitespace-pre-line mb-8 text-5xl text-[#35b6f9] font-extrabold'>
-                        What our 
+                        What our
                         Customers says
                         about us.
                     </h2>
@@ -248,7 +262,7 @@
                     <div class='carousel flex overflow-x-auto text-red-500 m-2 mb-8 '>
                         <div class='w-[50%] h-[70%] md:w-[60%]  md:h-[40%] bg-white bg-opacity-20 shadow-lg mb-4 ml-2 rounded-md flex-none'>
                             <div class = 'justify-center items-center h-full'>
-                                <p class='p-2 text-center'> 
+                                <p class='p-2 text-center'>
                                     "Rinx Venture is my go-to for all my gadget repairs. They’ve fixed my phone, laptop, and tablet over the years, and the service is always top-notch. Their customer care is excellent, and I always leave satisfied."
                                 </p>
                                 <h2 class='text-center'>  David H. </h2>
@@ -256,7 +270,7 @@
                         </div>
                         <div class='w-[50%] h-[70%] md:w-[30%]  md:h-[40%] bg-white bg-opacity-20 shadow-lg mb-4 ml-2 rounded-md flex-none'>
                             <div class = 'justify-center items-center h-full'>
-                                <p class='p-2 text-center'> 
+                                <p class='p-2 text-center'>
                                     "Rinx Venture exceeded my expectations. I bought a new smartphone from them, and the process was smooth and hassle-free. They helped me choose the right device, and I couldn’t be happier with my purchase. Highly recommended!"
                                 </p>
                                 <h2 class='text-center'> Sarah L. </h2>
@@ -264,66 +278,61 @@
                         </div>
                         <div class='w-[50%] h-[70%] md:w-[30%]  md:h-[40%] bg-white bg-opacity-20 shadow-lg mb-4 ml-2 rounded-md flex-none'>
                             <div class = 'justify-center items-center h-full'>
-                                <p class='p-2 text-center'> 
+                                <p class='p-2 text-center'>
                                     "I was impressed by how quickly Rinx Venture repaired my cracked phone screen. The service was not only fast but also of high quality. My phone looks and works like new!"
                                 </p>
                                 <h2 class='text-center'>  Sophia W. </h2>
                             </div>
-                        </div>    
+                        </div>
                         <div class='w-[50%] h-[70%] md:w-[30%]  md:h-[40%] bg-white bg-opacity-20 shadow-lg mb-4 ml-2 rounded-md flex-none'>
                             <div class = 'justify-center items-center h-full'>
-                                <p class='p-2 text-center'> 
+                                <p class='p-2 text-center'>
                                     "I bought a tablet from Rinx Venture and later returned for a repair on my old laptop. Both experiences were fantastic. They are knowledgeable, and they really care about customer satisfaction."
                                 </p>
                                 <h2 class='text-center'> Daniel M. </h2>
                             </div>
-                        </div>    
+                        </div>
                         <div class='w-[50%] h-[70%] md:w-[30%]  md:h-[40%] bg-white bg-opacity-20 shadow-lg mb-4 ml-2 rounded-md flex-none'>
                             <div class = 'justify-center items-center h-full'>
-                                <p class='p-2 text-center'> 
+                                <p class='p-2 text-center'>
                                     "I’ve used Rinx Venture multiple times for phone repairs, and they never disappoint. The technicians are knowledgeable and friendly, and the turnaround time is always impressive. Plus, their prices are unbeatable!"
                                 <h2 class='text-center'> Emma R. </h2>
                             </div>
-                        </div>    
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class='relative'>
-        <!-- This is for the whatsapp call to action button -->
-        <div class="elfsight-app-54c7cf36-5f68-4b49-8e08-05dad510663b absolute" data-elfsight-app-lazy></div>
-        </div>
-
         <footer class="relative w-full text-white py-8">
             <div class="container mx-auto px-4">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    
+
                     <!-- About Us Column -->
                     <div>
-                        <h2 class="text-3xl mb-8">Contact Us</h2>
-                        <ul class="text-xl font-bold space-y-4">
+                        <h2 class="text-2xl md:text-3xl mb-8">Contact Us</h2>
+                        <ul class="text-lg md:text-xl font-bold space-y-4">
                             <li><i class="bi bi-geo-alt"></i> Old Banex plaza Bsg 33A Opposite Greatfaith communication</li>
                             <li><i class="bi bi-telephone-inbound"></i> +234 816 217 4520</li>
                             <li><i class="bi bi-whatsapp"></i> +234 816 217 4520</li>
                             <li><i class="bi bi-envelope-plus"></i> RinxVenture@gmail.com</li>
                         </ul>
                     </div>
-        
+
                     <!-- Links Column -->
                     <div>
-                        <h2 class="text-3xl mb-8">Links</h2>
-                        <ul class="text-xl font-bold space-y-4">
+                        <h2 class="text-2xl md:text-3xl mb-8">Links</h2>
+                        <ul class="text-lg md:text-xl font-bold space-y-4">
                             <li><a href="{% url 'store' %}"><i class="bi bi-arrow-right"></i> Store</a></li>
                             <li><a href="{% url 'phone-repair' %}"><i class="bi bi-arrow-right"></i> Device Repair</a></li>
                             <li><a href="{% url 'contacts' %}"><i class="bi bi-arrow-right"></i> Contact</a></li>
                         </ul>
                     </div>
-        
+
                     <!-- Opening Hours Column -->
                     <div>
-                        <h2 class="text-3xl mb-8">Opening Hours</h2>
-                        <ul class="text-xl font-bold space-y-4">
+                        <h2 class="text-2xl md:text-3xl mb-8">Opening Hours</h2>
+                        <ul class="text-lg md:text-xl font-bold space-y-4">
                             <li><i class="bi bi-clock"></i>&nbsp;Monday <span class="ml-4">8:00 AM - 7:00 PM</span></li>
                             <li><i class="bi bi-clock"></i>&nbsp;Tuesday <span class="ml-4">8:00 AM - 7:00 PM</span></li>
                             <li><i class="bi bi-clock"></i>&nbsp;Wednesday <span class="ml-4">8:00 AM - 7:00 PM</span></li>
@@ -333,7 +342,7 @@
                             <li><i class="bi bi-clock"></i>&nbsp;Sunday <span class="ml-4">CLOSED</span></li>
                         </ul>
                     </div>
-        
+
                 </div>
                 <div class='mt-[15%] flex justify-between'>
                     <h2 class='text-sm'> Copyright © RinxVenture. All Rights Reserved. </h2>
@@ -349,8 +358,5 @@
                 navLinks.classList.toggle('top-[0%]')
             }
         </script>
-
-        <!-- This is for the whatsapp call to action button -->
-        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
     </body>
 </html>

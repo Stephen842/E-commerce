@@ -27,9 +27,23 @@
 
         <script src="https://cdn.tailwindcss.com"></script>
 
-        
+
         <title> {{ title }} </title>
     </head>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/66d5e45950c10f7a00a323d0/1i6po80k7';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 
     <body class='bg-slate-100 font-poppins'>
         <header>
@@ -54,12 +68,12 @@
                         <a href='/'><img src="{% static 'rinxlogo1.png' %}" alt="RinxVenture Logo" class='w-2/4 h-auto'></a>
                     </div>
 
-                    <div class="nav-links duration-500 w-full pl-4 bg-white bg-opacity-80 md:bg-transparent absolute md:static min-h-[60vh] md:min-h-fit left-0 top-[-100%] z-20">
+                    <div class="nav-links duration-500 w-full pl-4 bg-[#FFF5EE] md:bg-transparent absolute md:static min-h-[100vh] md:min-h-fit left-0 top-[-100%] z-20">
                         <ul class="flex md:flex-row flex-col md:justify-evenly md:gap-[1vw] gap-4 mt-4 md:mt-0 font-magnolia text-[#35b6f9]">
                             <li>
                                 <a class='hover:text-red-500 text-xl' href = "{% url 'phone-repair' %}"><i class="bi bi-house"></i> Home </a>
                             </li>
-                        
+
                             <li>
                                 <a class='hover:text-red-500 text-xl' href = "{% url 'store' %}"><i class="bi bi-cart4"></i> Store </a>
                             </li>
@@ -78,20 +92,16 @@
                     </div>
                 </nav>
 
-                <!-- This is for the whatsapp call to action button -->
-                <div class="elfsight-app-54c7cf36-5f68-4b49-8e08-05dad510663b" data-elfsight-app-lazy></div>
-
-
                 <div class='m-4 mt-[16%] text-center items-center'>
                     <div>
                         <h2 class='text-5xl font-times text-red-500 font-bold'> Your Device Repair Expert! </h2>
                     </div>
                     <div>
-                        <h2 class='whitespace-pre-line text-3xl font-times text-white font-bold'> 
+                        <h2 class='whitespace-pre-line text-3xl font-times text-white font-bold'>
                             Success! Your Message Has Been Sent.
                         </h2>
                         <p class='whitespace-pre-line text-xl mb-4 text-white font-semibold'>
-                            Thank you for reaching out to RinxVenture. We’ve received your message and will get back to you as 
+                            Thank you for reaching out to RinxVenture. We’ve received your message and will get back to you as
                             soon as possible. We appreciate your patience and look forward to assisting you.
                         </p>
                     </div>
@@ -101,9 +111,6 @@
                 </div>
             </div>
         </header>
-
-        <!-- This is for the whatsapp call to action button -->
-        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
 
         <!-- This script below is for the navbar-->
         <script>
@@ -116,10 +123,10 @@
 
 
         <script>
-            // Wait for 5 seconds and then redirect to the home page
+            // Wait for 20 seconds and then redirect to the home page
             setTimeout(function() {
                 window.location.href = "{{ repair_url }}";
-            }, 20000); // 5000 milliseconds = 5 seconds
+            }, 20000); // 20000 milliseconds = 20 seconds
         </script>
     </body>
 </html>

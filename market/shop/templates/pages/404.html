@@ -16,7 +16,7 @@
         <link rel = 'stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
         <link rel = 'stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css'>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-        
+
         <!-- TailwindCSS Compilation -->
         <link rel="stylesheet" href="{% static 'src/npx tailwindcss -i ./static/src/input.css -o ./static/src/output.cssoutput.css' %}">
         <link rel="stylesheet" href="{% static 'src/output.css' %}">
@@ -26,9 +26,23 @@
 
         <script src="https://cdn.tailwindcss.com"></script>
 
-        
+
         <title> {{ title }} </title>
     </head>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/66d5e45950c10f7a00a323d0/1i6po80k7';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 
     <body class='bg-slate-100 font-poppins'>
         <header>
@@ -37,12 +51,12 @@
                     <a href='/'><img src="{% static 'rinxlogo1.png' %}" alt="RinxVenture Logo" class='w-2/4 h-auto'></a>
                 </div>
 
-                <div class="nav-links duration-500 w-full pl-4 bg-white bg-opacity-80 md:bg-transparent absolute md:static min-h-[60vh] md:min-h-fit left-0 top-[-100%] z-20">
+                <div class="nav-links duration-500 w-full pl-4 bg-[#FFF5EE] md:bg-transparent absolute md:static min-h-[100vh] md:min-h-fit left-0 top-[-100%] z-20">
                     <ul class="flex md:flex-row flex-col md:justify-evenly md:gap-[1vw] gap-4 mt-4 md:mt-0 font-magnolia text-[#35b6f9]">
                         <li>
                             <a class='hover:text-red-500 text-xl' href = '/'><i class="bi bi-house"></i> Home </a>
                         </li>
-                        
+
                         <li>
                             <a class='hover:text-red-500 text-xl' href = "{% url 'cart' %}"><i class="bi bi-cart4"></i> Cart </a>
                         </li>
@@ -65,18 +79,18 @@
                 </div>
             </nav>
         </header>
-        
+
         <div class="flex items-center justify-center min-h-screen">
-            <div class="text-center">
-                <i class='bi bi-emoji-frown-fill mb-4 text-6xl text-yellow-500 border-black' ></i>
+            <div class="text-center text-[#334]">
+                <i class='bi bi-emoji-frown-fill mb-4 text-6xl text-[#35b6f9] border-black' ></i>
                 <h2 class="mb-4 text-2xl md:text-3xl">We couldn't find the page you were looking for.</h2>
                 <div class="flex items-center justify-center mb-2">
                     <a href='/'><button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-magnolia cursor-pointer py-2 px-4 rounded">Go back to Home</button></a>
                 </div>
             </div>
         </div>
-        
-        
+
+
         <!-- This script below is for the navbar-->
         <script>
             const navLinks = document.querySelector('.nav-links')
